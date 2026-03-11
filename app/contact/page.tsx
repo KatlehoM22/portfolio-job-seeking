@@ -1,8 +1,18 @@
+import { SectionTitle } from "@/components/atoms/SectionTitle";
+
 export default function ContactPage() {
-    return (
-        <main>
-            <h1>Contact Me</h1>
-            <p>This is where you can find my contact information and reach out to me.</p>
-        </main>
-    );
+  return (
+    <main className="space-y-6">
+      <SectionTitle
+        eyebrow="Contact"
+        title="Let us build something useful"
+        description="Open to junior full-stack opportunities, internships, and project collaborations."
+      />
+
+      <div className="tech-panel rounded-lg p-6 text-sm text-muted-foreground sm:text-base">
+        <p>Email: katleho@example.com</p>
+        <p className="mt-2">Location: Johannesburg, South Africa</p>
+      </div>
+    </main>
+  );
 }

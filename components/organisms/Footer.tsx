@@ -1,7 +1,14 @@
+import { SITE } from "@/lib/constants";
+
 export function Footer() {
-    return (
-        <footer style={{ textAlign: "center", padding: "16px 0", borderTop: "1px solid #eee", marginTop: "32px" }}>
-            <p>&copy; {new Date().getFullYear()} Katleho Makoro. All rights reserved.</p>
-        </footer>
-    );
+  return (
+    <footer className="mt-12 border-t border-border/80">
+      <div className="mx-auto w-full max-w-5xl px-[var(--space-page-x)] py-5 text-sm text-muted-foreground">
+        <p>
+          <span className="tech-label text-[0.72rem] text-foreground">{SITE.name}</span>{" "}
+          - Built with Next.js, TypeScript, Tailwind, and MDX.
+        </p>
+      </div>
+    </footer>
+  );
 }

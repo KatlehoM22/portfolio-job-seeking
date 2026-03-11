@@ -1,33 +1,36 @@
 import Link from "next/link";
-import { SITE } from "../../lib/constants";
-import { ROUTES } from "../../lib/routes";
+import { SITE } from "@/lib/constants";
+import { ROUTES } from "@/lib/routes";
+import { NavLink } from "@/components/atoms/NavLink";
+
+const links = [
+  { href: ROUTES.about, label: "About" },
+  { href: ROUTES.skills, label: "Skills" },
+  { href: ROUTES.cv, label: "CV" },
+  { href: ROUTES.projects, label: "Projects" },
+  { href: ROUTES.contact, label: "Contact" },
+];
 
 export function Header() {
-    return (
-        <header style={{ padding: "16px 0", borderBottom: "1px solid #eee" }}>
-            <nav
-                style={{                                // <--- add '=' here
-                    maxWidth: "1100px",
-                    margin: "0 auto",
-                    display: "flex",
-                    padding: "0 24px",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    gap: "16px",
-                }}
-            >
-                <Link href={ROUTES.home} style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-                    {SITE.name}
-                </Link>
+  return (
+    <header className="border-b border-border/80 bg-surface/85 backdrop-blur-md">
+      <nav
+        className="mx-auto flex w-full max-w-5xl items-center justify-between px-[var(--space-page-x)] py-4"
+        aria-label="Main navigation"
+      >
+        <Link
+          href={ROUTES.home}
+          className="tech-label rounded-sm border border-border/80 bg-surface-muted px-3 py-1.5 text-[0.72rem] font-bold text-foreground"
+        >
+          {SITE.name}
+        </Link>
 
-                <div style={{ display: "flex", gap: "16px" }}>
-                    <Link href={ROUTES.about}>About</Link>
-                    <Link href={ROUTES.skills}>Skills</Link>
-                    <Link href={ROUTES.cv}>CV</Link>
-                    <Link href={ROUTES.projects}>Projects</Link>
-                    <Link href={ROUTES.contact}>Contact</Link>
-                </div>
-            </nav>
-        </header>
-    );
+        <div className="flex flex-wrap items-center gap-1">
+          {links.map((link) => (
+            <NavLink key={link.href} href={link.href} label={link.label} />
+          ))}
+        </div>
+      </nav>
+    </header>
+  );
 }

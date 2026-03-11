@@ -1,0 +1,31 @@
+export const metadata = {
+  title: "Portfolio Platform Architecture",
+  summary:
+    "Built a content-driven portfolio platform using MDX to separate presentation from technical narratives.",
+  stack: ["Next.js", "MDX", "TypeScript", "Tailwind CSS"],
+};
+
+# Context
+Static portfolio pages become hard to maintain when every project requires
+manual JSX edits.
+
+# Problem
+I needed a system where project narratives can evolve quickly without touching
+layout code.
+
+# Solution
+Project content is stored as MDX files, while list and detail pages pull
+metadata dynamically via a typed loader.
+
+## Content Flow
+```mermaid
+flowchart TD
+  MDX[MDX Files] --> Loader[lib/projects.ts]
+  Loader --> List[Projects Index Page]
+  Loader --> Detail[Dynamic Project Detail Page]
+```
+
+# Outcome
+- Content and layout are cleanly separated.
+- Adding a new project requires adding one MDX file.
+- Architecture and communication quality are now part of the portfolio itself.
