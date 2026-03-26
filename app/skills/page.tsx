@@ -2,17 +2,25 @@ import { SectionTitle } from "@/components/atoms/SectionTitle";
 
 const skillGroups = [
   {
+    area: "Languages",
+    items: ["JavaScript", "SQL", "Java"],
+  },
+  {
     area: "Frontend",
-    items: ["Next.js", "TypeScript", "Tailwind CSS", "Accessibility"],
+    items: ["React", "Tailwind CSS", "Responsive UI development"],
   },
   {
     area: "Backend",
-    items: ["Node.js", "REST APIs", "Data modeling", "Authentication fundamentals"],
+    items: ["Node.js", "Express.js", "REST APIs", "Data modeling", "Authentication fundamentals"],
   },
   {
     area: "Engineering",
     items: ["Component architecture", "Testing basics", "Documentation", "CI-aware workflows"],
   },
+  {
+    area: "Databases",
+    items: ["PostgreSQL", "MySQL","Database design principles"],
+  }
 ];
 
 export default function SkillsPage() {
@@ -21,7 +29,7 @@ export default function SkillsPage() {
       <SectionTitle
         eyebrow="Skills"
         title="Tools and practices I ship with"
-        description="I prioritize maintainable architecture, typed interfaces, and predictable delivery."
+        description="My strongest practical experience is in full-stack JavaScript development, with additional academic grounding in Java and relational databases, plus exposure to SAP-based enterprise systems."
       />
 
       <div className="grid gap-4 sm:grid-cols-3">

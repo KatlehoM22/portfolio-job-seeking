@@ -6,25 +6,25 @@ export default function AboutPage() {
     {
       title: "Full-stack delivery",
       detail:
-        "I can own features from frontend experience through API design and deployment-ready implementation.",
+        "I am comfortable taking a feature from initial requirement through frontend implementation, backend logic, database interaction, and final testing.I focus on building soultions that are reliable and easy for teams to maintain.",
     },
     {
-      title: "Architecture thinking",
+      title: "Structured system thinking",
       detail:
-        "I prefer clear boundaries, typed contracts, and component systems that scale with product growth.",
+        "I approach development with a focus on clear separation between UI, business logic, and data layers. This helps me design applications that remain understandableand scalable.",
     },
     {
-      title: "Business alignment",
+      title: "Practical problem solving",
       detail:
-        "I translate requirements into maintainable solutions that support real team workflows.",
+        "My goal is to deliver solutions that improve efficiency and support long-term use.",
     },
   ];
 
   const workingStyle = [
-    "Break work into small, testable milestones.",
-    "Document tradeoffs so teams can make informed decisions quickly.",
-    "Prioritize accessibility, reliability, and clear UI feedback.",
-    "Communicate blockers early and focus on delivery momentum.",
+    "I break complex tasks into manageable milestones so progress remains visible and easier to test.",
+    "I document key decisions and trade-offs to help teams understand system behaviour and future impact.",
+    "I prioritise reliability, clear user feedback, and predictable application behaviour in the systems I build.",
+    "I communicate risks or blockers early and stay focused on maintaining steady delivery progress.",
   ];
 
   return (
@@ -32,7 +32,7 @@ export default function AboutPage() {
       <SectionTitle
         eyebrow="About"
         title={`${SITE.name} - Software Developer`}
-        description="I build production-minded web applications with strong fundamentals in TypeScript, system design, and team collaboration."
+        description="I build production-minded web applications with strong fundamentals in system design, software development, and team collaboration."
       />
 
       <section className="tech-panel rounded-lg p-6">
@@ -40,16 +40,23 @@ export default function AboutPage() {
           Professional profile
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-          I am a {SITE.location}-based developer focused on reliable, maintainable
-          software. My work combines practical frontend engineering, backend
-          integration, and structured problem-solving. I care about writing code
+          I am a {SITE.location}-based developer with experience building modern web applications 
+          using Javascript frameworks, RESTful APIs, and relational databases.
+          My work focuses on translating business requirements into scalable and 
+          maintainable systems that support real operational workflows. I care about writing code
           that teams can read, trust, and extend.
+        </p>
+
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+          I hold a diploma in Computer Science. My technical foundation includes academic exposure to Java, object-oriented 
+          programming principles, data structures, and relational database design. These fundamentals have shaped my approach 
+          towards backend logic, data modeling, and structured application development.
         </p>
       </section>
 
       <section className="space-y-4">
         <h2 className="text-lg font-semibold tracking-tight text-foreground">
-          What I bring to engineering teams
+          What I bring to development teams
         </h2>
         <div className="grid gap-4 md:grid-cols-3">
           {strengths.map((item) => (

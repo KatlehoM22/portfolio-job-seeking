@@ -3,5 +3,5 @@ export const SITE = {
   role: "Junior Software Developer",
   location: "Johannesburg, South Africa",
   summary:
-    "I build reliable web systems with a full-stack mindset, clear architecture, and measurable outcomes.",
+    "Hi there!,I am an aspiring software developer. I build reliable web systems with a full-stack mindset, clear architecture, and measurable outcomes.",
 } as const;
