@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { SITE } from "@/lib/constants";
 import { ROUTES } from "@/lib/routes";
 import { NavLink } from "@/components/atoms/NavLink";
 
@@ -13,16 +12,16 @@ const links = [
 
 export function Header() {
   return (
-    <header className="border-b border-border/80 bg-surface/85 backdrop-blur-md">
+    <header className="site-header border-b border-border/80 bg-surface/85 backdrop-blur-md">
       <nav
-        className="mx-auto flex w-full max-w-5xl items-center justify-between px-[var(--space-page-x)] py-4"
+        className="mx-auto flex w-full max-w-6xl items-center justify-between px-[var(--space-page-x)] py-5"
         aria-label="Main navigation"
       >
         <Link
           href={ROUTES.home}
-          className="tech-label rounded-sm border border-border/80 bg-surface-muted px-3 py-1.5 text-[0.72rem] font-bold text-foreground"
+          className="brand-mark tech-label text-sm font-bold text-primary"
         >
-          {SITE.name}
+          &lt;KM /&gt;
         </Link>
 
         <div className="flex flex-wrap items-center gap-1">

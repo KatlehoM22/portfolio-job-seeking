@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { Header } from "@/components/organisms/Header";
 import { Footer } from "@/components/organisms/Footer";
-
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
-});
-
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -31,9 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${jakarta.variable} ${jetbrains.variable} bg-background text-foreground antialiased`}
-      >
+      <body className="bg-background text-foreground antialiased">
         <Header />
         <PageContainer>{children}</PageContainer>
         <Footer />

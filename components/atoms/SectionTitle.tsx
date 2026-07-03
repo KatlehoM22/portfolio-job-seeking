@@ -9,10 +9,10 @@ export function SectionTitle({ eyebrow, title, description }: SectionTitleProps)
     <div className="space-y-3 rise-in">
       {eyebrow ? (
         <p className="tech-label text-[0.68rem] font-semibold text-primary">
-          [{eyebrow}]
+          {"//"} {eyebrow}
         </p>
       ) : null}
-      <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+      <h1 className="page-title text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl">
         {title}
       </h1>
       {description ? (
