@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   },
   description:
     "Enterprise-ready portfolio showcasing full-stack projects, architecture thinking, and delivery discipline.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

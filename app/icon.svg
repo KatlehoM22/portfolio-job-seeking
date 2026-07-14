@@ -1,0 +1,50 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 100 100"
+>
+  <defs>
+    <linearGradient id="km-accent" x1="18" y1="18" x2="82" y2="82" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00f0b5" />
+      <stop offset="1" stop-color="#00b8d9" />
+    </linearGradient>
+    <filter id="km-glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="2.4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="100" height="100" rx="22" fill="#070a0f" />
+  <rect
+    x="7"
+    y="7"
+    width="86"
+    height="86"
+    rx="18"
+    fill="none"
+    stroke="url(#km-accent)"
+    stroke-width="4"
+  />
+  <path
+    d="M20 30H35M20 50H32M20 70H35M65 30H80M68 50H80M65 70H80"
+    stroke="#00f0b5"
+    stroke-width="2"
+    stroke-linecap="round"
+    opacity="0.32"
+  />
+
+  <text
+    x="50"
+    y="63"
+    text-anchor="middle"
+    font-size="43"
+    font-family="Arial, sans-serif"
+    font-weight="700"
+    fill="url(#km-accent)"
+    filter="url(#km-glow)"
+  >
+    KM
+  </text>
+</svg>

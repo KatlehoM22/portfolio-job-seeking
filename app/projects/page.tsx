@@ -13,14 +13,16 @@ export default async function ProjectsPage() {
         description="Each project page is content-driven and version-controlled for fast updates."
       />
 
-      <div className="grid gap-4">
-        {projects.map((project) => (
+      <div className="project-card-grid">
+        {projects.map((project, index) => (
           <ProjectCard
             key={project.slug}
             slug={project.slug}
             title={project.title}
             summary={project.summary}
             stack={project.stack}
+            screenshot={project.screenshot}
+            index={index}
           />
         ))}
       </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaDatabase, FaServer } from "react-icons/fa";
+import { FaDatabase, FaGithub, FaLinkedin, FaServer } from "react-icons/fa";
 import { SiReact } from "react-icons/si";
 import { TechIcon } from "@/components/atoms/TechIcon";
 import { SITE } from "@/lib/constants";
@@ -31,6 +31,16 @@ export default async function Home() {
           <div className="hero-actions">
             <Link href={ROUTES.projects} className="button button-primary">view_projects()</Link>
             <Link href={ROUTES.contact} className="button button-secondary">contact_me()</Link>
+          </div>
+          <div className="social-links hero-social-links" aria-label="Social links">
+            <a href={SITE.socials.github} target="_blank" rel="noreferrer">
+              <FaGithub className="h-4 w-4" aria-hidden="true" />
+              <span>GitHub</span>
+            </a>
+            <a href={SITE.socials.linkedin} target="_blank" rel="noreferrer">
+              <FaLinkedin className="h-4 w-4" aria-hidden="true" />
+              <span>LinkedIn</span>
+            </a>
           </div>
         </div>
         <a href="#about-preview" className="scroll-cue" aria-label="Scroll to introduction"><span /></a>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Card } from "@/components/atoms/Card";
+import Image from "next/image";
 import { TechIcon } from "@/components/atoms/TechIcon";
 
 type ProjectCardProps = {
@@ -7,39 +7,60 @@ type ProjectCardProps = {
   title: string;
   summary: string;
   stack: string[];
+  screenshot?: string;
+  index?: number;
 };
 
-export function ProjectCard({ slug, title, summary, stack }: ProjectCardProps) {
+export function ProjectCard({
+  slug,
+  title,
+  summary,
+  stack,
+  screenshot,
+  index = 0,
+}: ProjectCardProps) {
   return (
-    <Card>
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <h2 className="text-xl font-semibold tracking-tight text-foreground">
-            {title}
-          </h2>
-          <p className="text-sm text-muted-foreground">{summary}</p>
-        </div>
-
-        <ul className="flex flex-wrap gap-2" aria-label={`${title} technology stack`}>
-          {stack.map((item) => (
-            <li
-              key={item}
-              className="tech-label inline-flex items-center gap-1.5 rounded border border-border bg-surface-muted px-2.5 py-1 text-[0.62rem] font-semibold text-muted-foreground"
-            >
-              <TechIcon name={item} className="h-3 w-3 text-primary" />
-              <span className="text-primary">-</span>
-              {item}
-            </li>
-          ))}
-        </ul>
-
-        <Link
-          href={`/projects/${slug}`}
-          className="inline-flex items-center text-sm font-semibold text-primary hover:underline"
-        >
-          View case study
-        </Link>
+    <Link href={`/projects/${slug}`} className="tech-panel project-card">
+      <div className="project-card-topline">
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <span>case_study()</span>
       </div>
-    </Card>
+
+      <div className="project-screenshot-frame">
+        {screenshot ? (
+          <Image
+            src={screenshot}
+            alt={`${title} screenshot`}
+            fill
+            sizes="(max-width: 720px) calc(100vw - 2.5rem), 540px"
+            className="project-screenshot-image"
+          />
+        ) : (
+          <div className="project-screenshot-placeholder">
+            <span className="tech-label">Project screenshot</span>
+            <p>Add screenshot here</p>
+          </div>
+        )}
+      </div>
+
+      <div>
+        <h3>{title}</h3>
+        <p>{summary}</p>
+      </div>
+
+      <ul aria-label={`${title} technology stack`}>
+        {stack.map((item) => (
+          <li key={item}>
+            <TechIcon name={item} />
+            <span>-</span>
+            {item}
+          </li>
+        ))}
+      </ul>
+
+      <span className="project-card-link">
+        View case study <span>↗</span>
+      </span>
+    </Link>
   );
 }
