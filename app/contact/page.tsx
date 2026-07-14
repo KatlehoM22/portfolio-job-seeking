@@ -10,7 +10,7 @@ export default function ContactPage() {
       />
 
       <div className="tech-panel rounded-lg p-6 text-sm text-muted-foreground sm:text-base">
-        <p>Email: katleho@example.com</p>
+        <p>Email: katlehomakoro07@gmail.com</p>
         <p className="mt-2">Location: Johannesburg, South Africa</p>
       </div>
     </main>

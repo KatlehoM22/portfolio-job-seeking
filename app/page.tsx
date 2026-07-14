@@ -62,12 +62,29 @@ export default async function Home() {
           <div><p className="section-index">03 / SELECTED WORK</p><h2>Projects & case studies</h2></div>
           <Link href={ROUTES.projects} className="text-link">View all projects <span>↗</span></Link>
         </div>
-        <div className="featured-projects">
+        <div className="project-card-grid">
           {projects.map((project, index) => (
-            <Link href={`/projects/${project.slug}`} className="featured-project" key={project.slug}>
-              <span className="project-number">0{index + 1}</span>
-              <div><h3>{project.title}</h3><p>{project.summary}</p><ul>{project.stack.map((item) => <li key={item}>{item}</li>)}</ul></div>
-              <span className="project-arrow">↗</span>
+            <Link href={`/projects/${project.slug}`} className="tech-panel project-card" key={project.slug}>
+              <div className="project-card-topline">
+                <span>0{index + 1}</span>
+                <span>case_study()</span>
+              </div>
+              <div className="project-screenshot-frame">
+                <div className="project-screenshot-placeholder">
+                  <span className="tech-label">Project screenshot</span>
+                  <p>Add screenshot here</p>
+                </div>
+              </div>
+              <div>
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+              </div>
+              <ul>
+                {project.stack.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <span className="project-card-link">View project <span>↗</span></span>
             </Link>
           ))}
         </div>

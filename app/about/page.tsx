@@ -1,4 +1,5 @@
 import { SectionTitle } from "@/components/atoms/SectionTitle";
+import Image from "next/image";
 import { SITE } from "@/lib/constants";
 
 export default function AboutPage() {
@@ -35,23 +36,40 @@ export default function AboutPage() {
         description="I build production-minded web applications with strong fundamentals in system design, software development, and team collaboration."
       />
 
-      <section className="tech-panel rounded-lg p-6">
-        <h2 className="text-lg font-semibold tracking-tight text-foreground">
-          Professional profile
-        </h2>
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-          I am a {SITE.location}-based developer with experience building modern web applications 
-          using Javascript frameworks, RESTful APIs, and relational databases.
-          My work focuses on translating business requirements into scalable and 
-          maintainable systems that support real operational workflows. I care about writing code
-          that teams can read, trust, and extend.
-        </p>
+      <section className="about-profile-grid">
+        <article className="tech-panel rounded-lg p-6">
+          <h2 className="text-lg font-semibold tracking-tight text-foreground">
+            Professional profile
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+            I am a {SITE.location}-based developer with experience building modern web applications 
+            using Javascript frameworks, RESTful APIs, and relational databases.
+            My work focuses on translating business requirements into scalable and 
+            maintainable systems that support real operational workflows. I care about writing code
+            that teams can read, trust, and extend.
+          </p>
 
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-          I hold a diploma in Computer Science. My technical foundation includes academic exposure to Java, object-oriented 
-          programming principles, data structures, and relational database design. These fundamentals have shaped my approach 
-          towards backend logic, data modeling, and structured application development.
-        </p>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
+            I hold a diploma in Computer Science. My technical foundation includes academic exposure to Java, object-oriented 
+            programming principles, data structures, and relational database design. These fundamentals have shaped my approach 
+            towards backend logic, data modeling, and structured application development.
+          </p>
+        </article>
+
+        <aside className="profile-photo-card tech-panel rounded-lg p-4" aria-label="Profile photo placeholder">
+          <div className="profile-photo-frame">
+            <Image 
+              src="/katleho_profile.jpg" 
+              alt="Katleho Makoro"
+              fill
+              className="profile-photo object-cover" 
+            />
+          </div>
+          <div className="profile-photo-caption">
+            <span className="status-dot" />
+            Available for junior developer opportunities
+          </div>
+        </aside>
       </section>
 
       <section className="space-y-4">
