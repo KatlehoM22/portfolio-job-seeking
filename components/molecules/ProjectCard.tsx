@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card } from "@/components/atoms/Card";
+import { TechIcon } from "@/components/atoms/TechIcon";
 
 type ProjectCardProps = {
   slug: string;
@@ -23,8 +24,10 @@ export function ProjectCard({ slug, title, summary, stack }: ProjectCardProps) {
           {stack.map((item) => (
             <li
               key={item}
-              className="tech-label rounded border border-border bg-surface-muted px-2.5 py-1 text-[0.62rem] font-semibold text-muted-foreground"
+              className="tech-label inline-flex items-center gap-1.5 rounded border border-border bg-surface-muted px-2.5 py-1 text-[0.62rem] font-semibold text-muted-foreground"
             >
+              <TechIcon name={item} className="h-3 w-3 text-primary" />
+              <span className="text-primary">-</span>
               {item}
             </li>
           ))}

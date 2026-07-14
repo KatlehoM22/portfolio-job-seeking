@@ -1,21 +1,25 @@
 import { SectionTitle } from "@/components/atoms/SectionTitle";
 import Image from "next/image";
+import { FaBullseye, FaLayerGroup, FaProjectDiagram } from "react-icons/fa";
 import { SITE } from "@/lib/constants";
 
 export default function AboutPage() {
   const strengths = [
     {
       title: "Full-stack delivery",
+      icon: FaLayerGroup,
       detail:
         "I am comfortable taking a feature from initial requirement through frontend implementation, backend logic, database interaction, and final testing.I focus on building soultions that are reliable and easy for teams to maintain.",
     },
     {
       title: "Structured system thinking",
+      icon: FaProjectDiagram,
       detail:
         "I approach development with a focus on clear separation between UI, business logic, and data layers. This helps me design applications that remain understandableand scalable.",
     },
     {
       title: "Practical problem solving",
+      icon: FaBullseye,
       detail:
         "My goal is to deliver solutions that improve efficiency and support long-term use.",
     },
@@ -62,6 +66,9 @@ export default function AboutPage() {
               src="/katleho_profile.jpg" 
               alt="Katleho Makoro"
               fill
+              priority
+              loading="eager"
+              sizes="(max-width: 720px) calc(100vw - 2.5rem), 340px"
               className="profile-photo object-cover" 
             />
           </div>
@@ -82,9 +89,12 @@ export default function AboutPage() {
               key={item.title}
               className="tech-panel rounded-lg p-5"
             >
-              <h3 className="tech-label text-[0.74rem] font-semibold text-primary">
-                {item.title}
-              </h3>
+              <div className="flex items-center gap-2 text-primary">
+                <item.icon className="h-4 w-4" aria-hidden="true" />
+                <h3 className="tech-label text-[0.74rem] font-semibold">
+                  {item.title}
+                </h3>
+              </div>
               <p className="mt-2 text-sm leading-7 text-muted-foreground">
                 {item.detail}
               </p>

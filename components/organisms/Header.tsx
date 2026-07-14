@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import { NavLink } from "@/components/atoms/NavLink";
+import { FiCode, FiFileText, FiFolder, FiMail, FiUser } from "react-icons/fi";
 
 const links = [
-  { href: ROUTES.about, label: "About" },
-  { href: ROUTES.skills, label: "Skills" },
-  { href: ROUTES.cv, label: "CV" },
-  { href: ROUTES.projects, label: "Projects" },
-  { href: ROUTES.contact, label: "Contact" },
+  { href: ROUTES.about, label: "About", icon: FiUser },
+  { href: ROUTES.skills, label: "Skills", icon: FiCode },
+  { href: ROUTES.cv, label: "CV", icon: FiFileText },
+  { href: ROUTES.projects, label: "Projects", icon: FiFolder },
+  { href: ROUTES.contact, label: "Contact", icon: FiMail },
 ];
 
 export function Header() {
@@ -26,7 +27,7 @@ export function Header() {
 
         <div className="flex flex-wrap items-center gap-1">
           {links.map((link) => (
-            <NavLink key={link.href} href={link.href} label={link.label} />
+            <NavLink key={link.href} href={link.href} label={link.label} icon={link.icon} />
           ))}
         </div>
       </nav>

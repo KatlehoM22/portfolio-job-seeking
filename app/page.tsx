@@ -1,12 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
+import { FaDatabase, FaServer } from "react-icons/fa";
+import { SiReact } from "react-icons/si";
+import { TechIcon } from "@/components/atoms/TechIcon";
 import { SITE } from "@/lib/constants";
 import { ROUTES } from "@/lib/routes";
 import { getProjectSummaries } from "@/lib/projects";
 
 const capabilities = [
-  { index: "01", title: "Frontend systems", text: "Responsive, accessible interfaces built with React and a sharp eye for maintainability." },
-  { index: "02", title: "Backend logic", text: "REST APIs, validation, authentication fundamentals, and structured service design." },
-  { index: "03", title: "Data & delivery", text: "Relational data modelling, SQL, documentation, testing, and dependable workflows." },
+  { index: "01", title: "Frontend systems", icon: SiReact, text: "Responsive, accessible interfaces built with React and a sharp eye for maintainability." },
+  { index: "02", title: "Backend logic", icon: FaServer, text: "REST APIs, validation, authentication fundamentals, and structured service design." },
+  { index: "03", title: "Data & delivery", icon: FaDatabase, text: "Relational data modelling, SQL, documentation, testing, and dependable workflows." },
 ];
 
 export default async function Home() {
@@ -51,7 +55,11 @@ export default async function Home() {
         <div className="capability-grid">
           {capabilities.map((item) => (
             <article className="tech-panel capability-card" key={item.index}>
-              <span>{item.index}</span><h3>{item.title}</h3><p>{item.text}</p>
+              <div className="capability-card-topline">
+                <span>{item.index}</span>
+                <item.icon className="h-5 w-5 text-primary" aria-hidden="true" />
+              </div>
+              <h3>{item.title}</h3><p>{item.text}</p>
             </article>
           ))}
         </div>
@@ -59,7 +67,7 @@ export default async function Home() {
 
       <section className="home-section">
         <div className="section-heading">
-          <div><p className="section-index">03 / SELECTED WORK</p><h2>Projects & case studies</h2></div>
+          <div><p className="section-index">03 / PROJECTS</p><h2>Projects & case studies</h2></div>
           <Link href={ROUTES.projects} className="text-link">View all projects <span>↗</span></Link>
         </div>
         <div className="project-card-grid">
@@ -70,10 +78,20 @@ export default async function Home() {
                 <span>case_study()</span>
               </div>
               <div className="project-screenshot-frame">
-                <div className="project-screenshot-placeholder">
-                  <span className="tech-label">Project screenshot</span>
-                  <p>Add screenshot here</p>
-                </div>
+                {project.screenshot ? (
+                  <Image
+                    src={project.screenshot}
+                    alt={`${project.title} screenshot`}
+                    fill
+                    sizes="(max-width: 720px) calc(100vw - 2.5rem), 540px"
+                    className="project-screenshot-image"
+                  />
+                ) : (
+                  <div className="project-screenshot-placeholder">
+                    <span className="tech-label">Project screenshot</span>
+                    <p>Add screenshot here</p>
+                  </div>
+                )}
               </div>
               <div>
                 <h3>{project.title}</h3>
@@ -81,7 +99,11 @@ export default async function Home() {
               </div>
               <ul>
                 {project.stack.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item}>
+                    <TechIcon name={item} />
+                    <span>-</span>
+                    {item}
+                  </li>
                 ))}
               </ul>
               <span className="project-card-link">View project <span>↗</span></span>

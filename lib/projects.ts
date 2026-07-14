@@ -7,10 +7,11 @@ type ProjectMeta = {
   title: string;
   summary: string;
   stack: string[];
+  screenshot?: string;
 };
 
 type ImportedProjectModule = {
-  metadata: Omit<ProjectMeta, "slug">;
+  metadata?: Partial<Omit<ProjectMeta, "slug">>;
   default: ComponentType;
 };
 
@@ -34,6 +35,19 @@ async function importProject(slug: string): Promise<ImportedProjectModule | null
   }
 }
 
+function normalizeProjectMeta(
+  slug: string,
+  metadata: ImportedProjectModule["metadata"],
+): ProjectMeta {
+  return {
+    slug,
+    title: metadata?.title ?? slug,
+    summary: metadata?.summary ?? "",
+    stack: Array.isArray(metadata?.stack) ? metadata.stack : [],
+    screenshot: metadata?.screenshot,
+  };
+}
+
 export async function getProjectSummaries(): Promise<ProjectMeta[]> {
   const slugs = await getProjectSlugs();
 
@@ -45,10 +59,7 @@ export async function getProjectSummaries(): Promise<ProjectMeta[]> {
         return null;
       }
 
-      return {
-        slug,
-        ...project.metadata,
-      } satisfies ProjectMeta;
+      return normalizeProjectMeta(slug, project.metadata);
     }),
   );
 
@@ -63,10 +74,7 @@ export async function getProjectBySlug(slug: string) {
   }
 
   return {
-    meta: {
-      slug,
-      ...project.metadata,
-    },
+    meta: normalizeProjectMeta(slug, project.metadata),
     Content: project.default,
   };
 }
