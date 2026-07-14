@@ -190,6 +190,18 @@ a { color: inherit; text-decoration: none; }
 .hero-title span { color: transparent; background: linear-gradient(100deg, var(--primary), var(--accent)); background-clip: text; -webkit-background-clip: text; }
 .hero-role { font: 400 clamp(1rem, 2vw, 1.45rem)/1.5 var(--font-mono); color: #8a9ab0; }
 .hero-role > span:first-child { color: var(--primary); margin-right: .6rem; }
+.hero-tagline {
+  display: inline-block;
+  margin-top: .85rem;
+  border: 1px solid rgba(0,240,181,.24);
+  border-radius: 999px;
+  background: rgba(0,240,181,.045);
+  color: var(--primary);
+  font: 700 .7rem/1 var(--font-mono);
+  letter-spacing: .12em;
+  padding: .6rem .9rem;
+  text-transform: uppercase;
+}
 .cursor { color: var(--primary); animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .hero-summary { max-width: 640px; margin: 1.5rem auto 0; color: var(--muted-foreground); line-height: 1.8; }
@@ -361,6 +373,24 @@ a { color: inherit; text-decoration: none; }
 }
 .contact-cta { text-align: center; border-bottom: 0; }.contact-cta p:not(.section-index) { margin: 1.2rem auto 2rem; max-width: 600px; color: var(--muted-foreground); }.contact-cta .button { display: inline-block; }
 .status-dot { display: inline-block; width: 6px; height: 6px; margin: 0 .25rem 0 .7rem; border-radius: 50%; background: var(--primary); box-shadow: 0 0 8px var(--primary); }
+.footer-social-links { display: inline-flex; align-items: center; gap: .45rem; }
+.footer-social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 1px solid rgba(0,240,181,.22);
+  border-radius: 999px;
+  color: var(--muted-foreground);
+  transition: border-color .2s ease, color .2s ease, transform .2s ease;
+}
+.footer-social-links a:hover {
+  border-color: rgba(0,240,181,.68);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+.footer-tagline { width: 100%; text-align: center; opacity: .88; }
 
 /* Legacy utility colours on the CV inherit the new palette. */
 .text-slate-500 { color: var(--muted-foreground) !important; }.text-slate-700 { color: var(--muted-foreground) !important; }

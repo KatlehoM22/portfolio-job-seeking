@@ -27,6 +27,7 @@ export default async function Home() {
             I&apos;m <span>{SITE.name}</span>
           </h1>
           <p className="hero-role"><span>&gt;</span> Junior Software Developer<span className="cursor">_</span></p>
+          <p className="hero-tagline">Dark-mode is Dev-mode</p>
           <p className="hero-summary">{SITE.summary}</p>
           <div className="hero-actions">
             <Link href={ROUTES.projects} className="button button-primary">view_projects()</Link>

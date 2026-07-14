@@ -1,4 +1,5 @@
 import { SITE } from "@/lib/constants";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FiMapPin } from "react-icons/fi";
 import { SiMdx, SiNextdotjs, SiTailwindcss, SiTypescript } from "react-icons/si";
 
@@ -16,9 +17,20 @@ export function Footer() {
             <SiMdx className="h-3.5 w-3.5" aria-hidden="true" />
           </span>
         </p>
+        <div className="footer-social-links" aria-label="Social links">
+          <a href={SITE.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub profile">
+            <FaGithub className="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
+          <a href={SITE.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+            <FaLinkedin className="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
+        </div>
         <p className="tech-label inline-flex items-center text-[0.65rem]">
           <FiMapPin className="mr-1.5 h-3.5 w-3.5 text-primary" aria-hidden="true" />
           Johannesburg, ZA <span className="status-dot" /> Available
+        </p>
+        <p className="footer-tagline tech-label text-[0.65rem] text-primary">
+          Dark-mode is Dev-mode
         </p>
       </div>
     </footer>
