@@ -51,11 +51,19 @@ export default async function Home() {
         <div>
           <p className="section-index">01 / ABOUT</p>
           <h2>Building useful software,<br /><span>one clear decision at a time.</span></h2>
-        </div>
-        <div className="intro-copy">
-          <p>I&apos;m a Johannesburg-based developer focused on turning real requirements into reliable, understandable web applications.</p>
           <Link href={ROUTES.about} className="text-link">More about me <span>↗</span></Link>
         </div>
+        <aside className="home-profile-card tech-panel p-4" aria-label="AI profile picture">
+          <div className="profile-photo-frame">
+            <Image
+              src="/AI_profile.png"
+              alt="AI profile illustration"
+              fill
+              sizes="(max-width: 720px) 280px, 360px"
+              className="home-profile-image"
+            />
+          </div>
+        </aside>
       </section>
 
       <section className="home-section">
