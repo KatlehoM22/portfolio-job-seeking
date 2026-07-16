@@ -9,7 +9,7 @@ export default async function ProjectsPage() {
     <main className="space-y-8">
       <SectionTitle
         eyebrow="Projects"
-        title="MDX-powered technical case studies"
+        title="Projects I am proud of"
         description="Each project page is content-driven and version-controlled for fast updates."
       />
 
