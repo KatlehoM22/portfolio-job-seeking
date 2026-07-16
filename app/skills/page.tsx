@@ -1,4 +1,5 @@
 import { SectionTitle } from "@/components/atoms/SectionTitle";
+import { CERTIFICATES } from "@/lib/constants";
 import type { IconType } from "react-icons";
 import {
   FaBookOpen,
@@ -97,6 +98,35 @@ export default function SkillsPage() {
           </section>
         ))}
       </div>
+
+      <section className="space-y-4">
+        <div>
+          <p className="section-index">CERTIFICATES</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+            Credentials and learning milestones
+          </h2>
+        </div>
+
+        <div className="certificate-grid">
+          {CERTIFICATES.map((certificate) => (
+            <a
+              href={certificate.href}
+              className="tech-panel certificate-card"
+              key={certificate.id}
+            >
+              <div className="certificate-card-topline">
+                <span>{certificate.status}</span>
+                <span>{certificate.year}</span>
+              </div>
+              <div>
+                <h3>{certificate.title}</h3>
+                <p>{certificate.issuer}</p>
+              </div>
+              <span className="certificate-link">View credential <span>↗</span></span>
+            </a>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

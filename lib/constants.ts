@@ -9,3 +9,22 @@ export const SITE = {
     linkedin: "https://www.linkedin.com/in/katleho-makoro",
   },
 } as const;
+
+export const CERTIFICATES = [
+  {
+    id: "certificate-1",
+    title: "Add certificate title",
+    issuer: "Issuing organization",
+    year: "2026",
+    status: "Completed",
+    href: "#",
+  },
+  {
+    id: "certificate-2",
+    title: "Add certificate title",
+    issuer: "Issuing organization",
+    year: "2026",
+    status: "Completed",
+    href: "#",
+  },
+] as const;
