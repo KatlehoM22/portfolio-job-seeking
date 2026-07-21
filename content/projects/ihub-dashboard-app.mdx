@@ -1,40 +1,224 @@
 export const metadata = {
-  title: "iHub Dashboard App",
+  title: "iHub Analytics Dashboard",
   summary:
-    "Migrated a legacy internal attendance flow to a typed Next.js stack with explicit architecture and predictable delivery.",
+    "Built an internal analytics platform that transforms LearnWorlds exports into validated, sprint-level learner progress and activity insights.",
   stack: [
     "JavaScript",
     "React",
+    "Vite",
     "Tailwind CSS",
-    "Express.js",
     "Node.js",
+    "Express",
     "PostgreSQL",
   ],
 };
 
-# Context
-A legacy attendance capture flow had inconsistent validation, weak UI feedback,
-and no clear extension path.
+# Project overview
 
-# Problem
-Recruiters and stakeholders need to see full-stack delivery quality, not only
-UI screens. The system needed a maintainable architecture with typed boundaries.
+The iHub Analytics Dashboard is an internal reporting application that helps
+programme teams understand learner progress and activity engagement.
 
-# Solution
-I implemented a modular Next.js architecture with component-driven UI,
-centralized design tokens, and typed domain modules.
+LearnWorlds contains valuable learner data, but its CSV and Excel exports are
+not organised around iHub's course and sprint structure. The dashboard adds a
+controlled import process that turns those raw files into learner-level
+progress views, activity metrics, risk indicators, and reporting summaries.
 
-## Architecture Diagram (Mermaid)
-```mermaid
-flowchart LR
-  UI[Next.js App Router UI] --> API[Typed Route Handlers]
-  API --> Domain[Business Domain Layer]
-  Domain --> DB[(Attendance Storage)]
-  Domain --> SAP[SAP Process Integration]
-```
+## At a glance
 
-# Outcome
-- Faster onboarding for contributors through clear structure.
-- Lower change risk using TypeScript and reusable components.
-- Recruiter-friendly case study with explicit tradeoffs and architecture
-  documentation.
+- **Role:** Full-stack Developer and Dashboard Designer — Developer Intern
+- **Year:** 2026
+- **Platform:** Responsive web dashboard
+- **Status:** Working internal application
+- **Data sources:** LearnWorlds CSV and Excel exports
+
+## The problem
+
+Programme reporting depended on exported learning-platform files that required
+repeated manual preparation. Data arrived in separate spreadsheets, columns
+needed validation and normalisation, and programme reporting was structured by
+courses and sprints rather than by individual files.
+
+Malformed rows and unknown learner records could distort results, while
+stakeholders needed summaries and intervention signals rather than more raw
+spreadsheets. The dashboard needed to bridge the gap between source files and
+the questions programme teams ask during each sprint.
+
+## My role
+
+I worked across product design, frontend implementation, backend services,
+database structure, and the data-import workflow. My contribution included:
+
+- designing the dashboard's information architecture and interface mock-ups;
+- presenting concepts, gathering stakeholder feedback, and refining the design;
+- developing learner-progress and activity-metrics views;
+- implementing course and sprint selectors;
+- building internal-user, learner, course, and sprint administration flows;
+- developing CSV and Excel upload functionality;
+- implementing validation, parsing, and normalisation services;
+- storing progress, activity metrics, import runs, and row-level errors in
+  PostgreSQL;
+- implementing authenticated dashboard sessions;
+- creating responsive tables, KPI cards, filters, confirmation dialogs, and
+  clear system feedback states.
+
+## The solution
+
+### Course- and sprint-based reporting
+
+The data model mirrors the way the programme is delivered. Administrators
+create a course, add ordered sprints, choose a dataset type, associate an upload
+with its course and sprint, and process the validated records.
+
+This gives every imported row an explicit reporting context instead of relying
+on inconsistent filenames or manually interpreted spreadsheets.
+
+### Learner progress dashboard
+
+The learner-progress view combines imported records into one multi-sprint
+table. Each learner appears once, with separate columns for the configured
+sprints. Users can switch between completion percentage and completed
+activities out of total activities.
+
+The selected sprint also produces a clear status—**completed**, **at risk**,
+**in progress**, or **no data**. Progress indicators and colour cues turn the
+table into an intervention tool by making learners who may need support easy to
+identify.
+
+### Activity metrics dashboard
+
+The activity view presents total activities, completions, completion rate,
+average and total study time, average score, and detailed activity-level
+performance. Sprint filtering helps programme teams isolate current content and
+spot low completion, unusual engagement, or weak performance.
+
+### Validated import workflow
+
+Administrators can upload two dataset types: `user_progress` and
+`activity_metrics`. Before data is accepted, the backend validates:
+
+- the selected course and sprint;
+- the import type and required file headers;
+- learner identities;
+- numeric and time-based values;
+- the structure of every row.
+
+Valid records are normalised and stored. Invalid rows are rejected with a
+specific reason. Each import retains its dataset type, reporting context,
+source-file information, processing status, accepted and rejected counts, and
+row-level errors. Incomplete or malformed data therefore cannot silently affect
+dashboard results.
+
+### People management and audit history
+
+The application deliberately separates **learners**, whose progress appears in
+reports, from **internal users**, who authenticate and administer the dashboard.
+This creates a clearer security boundary and prevents learner records from
+automatically becoming application accounts.
+
+Import history gives administrators a lightweight audit trail where they can
+confirm uploads, review processing results, investigate rejected rows, and
+verify that a reporting cycle completed successfully.
+
+## Key engineering decisions
+
+### Make programme structure explicit
+
+Inferring courses and sprints from filenames would be unreliable. Requiring a
+configured course and sprint gives every record deliberate, traceable context.
+
+### Validate learners before import
+
+Automatically creating learners from unknown emails could turn a spelling
+mistake into a duplicate identity. Imported emails must match the learner
+directory; unknown learners are surfaced as actionable validation errors.
+
+### Separate dataset types
+
+Learner progress and activity performance answer different questions and use
+different schemas. Treating them as distinct import types makes validation
+clearer and avoids forcing unrelated data into one structure.
+
+### Preserve row-level errors
+
+A generic import failure does not help an administrator correct a source file.
+The system records the affected row and exact validation reason so users can
+understand what was excluded and why.
+
+### Centralise learner-status rules
+
+Risk indicators are derived from explicit progress values. Centralising the
+threshold logic ensures tables, KPI cards, and risk distributions communicate
+the same interpretation.
+
+## Design approach
+
+I used a task-oriented hierarchy: course and sprint selectors establish
+context, KPI cards summarise what is happening, and progress and activity
+tables show who or what needs attention. Configuration screens manage the data
+behind the reports, while confirmation dialogs protect destructive actions.
+
+Reusable panels, clear typography, responsive tables, focused administrative
+flows, and deliberate empty, loading, success, and error states help users
+understand both the data and their next action.
+
+## Technical challenges
+
+### Converting exports into trustworthy data
+
+CSV and Excel files can contain missing values, inconsistent formatting,
+unknown learners, and malformed numbers. The import pipeline validates and
+normalises every row before it enters the reporting model.
+
+### Maintaining learner identity
+
+Email addresses connect LearnWorlds exports to the dashboard's learner
+directory. Strict matching prevents one person from being split across several
+records because of source-file errors.
+
+### Supporting multi-sprint comparison
+
+The dashboard combines records imported at different times into one learner
+view. Grouping progress by learner, course, and sprint allows each learner to
+appear once while still showing their progress across the programme structure.
+
+## Outcome
+
+The dashboard provides a governed path from LearnWorlds exports to structured
+programme insight. Teams can compare learner progress across sprints, identify
+learners who may need support, review activity-level engagement, understand
+rejected import rows, and maintain a traceable history of reporting cycles.
+
+The project demonstrates both data-product thinking and full-stack delivery by
+combining file ingestion, validation and normalisation, relational modelling,
+authentication, administrative workflows, progress aggregation, dashboard UX,
+and actionable risk reporting.
+
+## What I learned
+
+- A dashboard is only as reliable as its ingestion and validation pipeline.
+- Data errors should be visible, specific, and actionable.
+- Reporting structures should match how users understand and deliver their
+  programme.
+- Thresholds become product decisions when they influence learner
+  interventions.
+- Administrative tools need thoughtful feedback, safeguards, and empty states.
+- Stakeholder feedback is essential when translating reporting requirements
+  into a clear interface.
+
+## Future improvements
+
+- Add pre-import previews and configurable column mapping.
+- Support scheduled ingestion through the LearnWorlds API.
+- Add cohort and sprint trend comparisons.
+- Allow authorised users to export filtered dashboard views.
+- Add automated integration tests for both dataset types.
+- Make learner-risk thresholds configurable.
+- Add rollback or versioned replacement for corrected imports.
+- Introduce administrator, programme-manager, and read-only access levels.
+
+## Confidentiality
+
+This is a private internal reporting application. Portfolio screenshots and
+demonstrations use anonymised learner information; source files, real email
+addresses, internal identifiers, credentials, and confidential programme data
+are not published.

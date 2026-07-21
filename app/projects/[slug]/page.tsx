@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SectionTitle } from "@/components/atoms/SectionTitle";
+import { ExpandableCaseStudy } from "@/components/organisms/ExpandableCaseStudy";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
 
 type Props = {
@@ -55,9 +56,9 @@ export default async function ProjectDetailPage({ params }: Props) {
         ))}
       </ul>
 
-      <article className="tech-panel max-w-none space-y-4 rounded-lg p-6">
+      <ExpandableCaseStudy>
         <Content />
-      </article>
+      </ExpandableCaseStudy>
     </main>
   );
 }

@@ -1,7 +1,203 @@
 export const metadata = {
   title: "iHub Attendance Portal",
   summary:
-    "Built a content-driven portfolio platform using MDX to separate presentation from technical narratives.",
-  stack: ["JavaScript", "React", "Tailwind CSS", "Express.js", "Node.js", "PostgreSQL"],
-  screenshot: "/projects/ihub_attendance_portal.png"
+    "Built a role-based attendance operations platform that centralises records, leave workflows, reporting, and administrative oversight.",
+  stack: [
+    "JavaScript",
+    "React",
+    "Vite",
+    "Tailwind CSS",
+    "Chart.js",
+    "Node.js",
+    "Express",
+    "PostgreSQL",
+  ],
+  screenshot: "/projects/ihub_attendance_portal.png",
 };
+
+# Project overview
+
+The iHub Attendance Portal is a deployed internal web application for trainees,
+managers, and administrators. It connects attendance data from DreamClass with
+the day-to-day workflows needed to manage attendance across the organisation.
+
+Instead of relying on disconnected records, manual request processes, and
+separately prepared reports, the portal gives each user a workspace tailored to
+their responsibilities.
+
+## At a glance
+
+- **Role:** Full-stack Developer — Developer Intern
+- **Year:** 2026
+- **Platform:** Responsive web application
+- **Status:** Deployed internal application
+- **Integrations:** DreamClass and configurable email services
+
+## The problem
+
+DreamClass provided the source attendance data, but it did not cover all the
+operational processes surrounding attendance management. The organisation
+needed a central place where:
+
+- trainees could understand their attendance and submit absence, late-arrival,
+  or early-departure requests;
+- managers could resolve requests and identify attendance risks;
+- administrators could access programme-wide reporting and system controls;
+- attendance statuses, policies, and reporting rules could remain consistent;
+- integrations and important system activity could be monitored.
+
+Without a centralised workflow, attendance information and operational
+decisions were difficult to track and time-consuming to report on.
+
+## My role
+
+I worked across the frontend, backend, database, integrations, and business
+rules. My contribution included:
+
+- developing role-specific dashboards for trainees, managers, and
+  administrators;
+- building REST API endpoints with Node.js and Express;
+- modelling users, attendance, requests, settings, phases, assignments, and
+  logs in PostgreSQL;
+- implementing JWT authentication and backend-enforced access controls;
+- integrating and normalising DreamClass attendance data;
+- implementing attendance statistics and leave-balance calculations;
+- building request submission, approval, rejection, cancellation, and
+  rescinding workflows;
+- adding reporting, filtering, alerts, exports, and configurable email
+  notifications;
+- improving observability through audit, synchronisation, and service-health
+  logs.
+
+## The solution
+
+### Role-based workspaces
+
+**Trainees** can review attendance rates and term summaries, inspect their
+history, submit attendance-related requests, track decisions, and receive
+notifications.
+
+**Managers** can monitor assigned trainees, resolve requests, review trends and
+strike alerts, inspect province-wide attendance history, and generate scoped
+reports.
+
+**Administrators** can access organisation-wide analytics, manage users and
+assignments, configure attendance rules and programme phases, export data,
+review audit and synchronisation activity, and monitor database, email, and
+DreamClass service health.
+
+### Request lifecycle
+
+The portal supports absence or leave, late-arrival, and early-departure
+requests. The backend validates each submission against configurable timing and
+leave policies before storing it.
+
+Requests move through explicit states: **pending**, **approved**, **rejected**,
+**cancelled**, or **rescinded**. Managers are notified when action is required;
+trainees receive the outcome; and every decision remains available in the audit
+history.
+
+### DreamClass integration
+
+DreamClass remains the upstream source for trainee and attendance data. Through
+scheduled and manual synchronisation, the portal:
+
+- retrieves trainee and attendance data;
+- maps DreamClass users to portal users;
+- normalises inconsistent attendance statuses;
+- stores validated records in PostgreSQL;
+- calculates dashboard metrics from local data;
+- records synchronisation results for administrators.
+
+Keeping a normalised local copy improves reporting performance and avoids
+depending on the external API for every dashboard request.
+
+## Key engineering decisions
+
+### Backend-enforced data scoping
+
+Permissions are enforced by the API, not only by hiding interface elements.
+Trainees can access only their own records, while manager access is determined
+by assignment, province, and the feature being used.
+
+A manager may view attendance history for all trainees in their province, but
+request management and other sensitive actions remain assignment-based. This
+feature-specific rule provides the required visibility without widening access
+across the rest of the system.
+
+### Local attendance storage
+
+Serving reports directly from DreamClass would couple availability and
+performance to an external API. Normalised PostgreSQL records provide faster
+queries, historical reporting, consistent statuses, stronger data integrity,
+and access to previously synchronised data during an upstream interruption.
+
+### Configurable business rules
+
+Programme start times, request cut-off times, leave allowances, attendance
+statuses, and programme phases can change. I stored these as application
+settings instead of repeating them as hard-coded logic.
+
+### Operational visibility
+
+Migrations, schema checks, audit records, synchronisation logs, scheduled jobs,
+and provider-aware health checks help administrators distinguish between
+database, DreamClass, email-provider, and application failures.
+
+## Technical challenges
+
+### Normalising external statuses
+
+DreamClass could return inconsistent values for the same attendance concept. I
+created central normalisation logic so calculations, charts, filters, badges,
+and reports share one internal vocabulary.
+
+### Managing date-based policies
+
+Requests can span multiple dates and must be evaluated against programme
+phases, reporting periods, and leave policies. Explicit date-range and overlap
+logic keeps validation and reporting behaviour consistent.
+
+### Protecting relational integrity during synchronisation
+
+Every attendance record must belong to a recognised trainee. The synchronisation
+process establishes trainee records before inserting attendance data, while
+PostgreSQL foreign-key constraints prevent orphaned records.
+
+## Outcome
+
+The portal brings attendance records, trainee requests, manager decisions,
+reporting, and administrative governance into one operational environment.
+Trainees gain clearer visibility into their attendance, managers can focus on
+exceptions and pending actions, and administrators receive a programme-wide
+view of attendance operations and system health.
+
+Technically, the project demonstrates end-to-end delivery across third-party
+integration, multi-role workflows, backend authorisation, relational data
+modelling, configurable rules, analytics, reporting, auditability, and system
+monitoring.
+
+## What I learned
+
+- Access control must cover the full request lifecycle, not only the interface.
+- External integrations need normalisation, logging, and clear failure states.
+- Operational dashboards are most useful when they surface actions and
+  exceptions, not only charts.
+- Policies that are expected to change should be configurable.
+- Internal applications need migrations, monitoring, and recovery processes
+  alongside user-facing features.
+
+## Future improvements
+
+- Expand automated API, integration, and end-to-end test coverage.
+- Add structured application metrics and proactive alerts.
+- Move remaining client-side report calculations into tested backend services.
+- Improve the mobile experience for complex manager tables.
+- Explore single sign-on for simpler account lifecycle management.
+
+## Confidentiality
+
+This is a private internal application, so its source repository and production
+environment cannot be shared publicly. Portfolio screenshots and demonstrations
+are anonymised and exclude real names, email addresses, attendance records,
+credentials, and internal identifiers.
