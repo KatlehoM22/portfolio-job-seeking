@@ -1,6 +1,6 @@
 import { SectionTitle } from "@/components/atoms/SectionTitle";
 import { SITE } from "@/lib/constants";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FiMail, FiMapPin, FiSend } from "react-icons/fi";
 
 export default function ContactPage() {
@@ -26,7 +26,12 @@ export default function ContactPage() {
           <div className="mt-6 space-y-3">
             <p className="flex items-center gap-3">
               <FiMail className="h-4 w-4 text-primary" aria-hidden="true" />
-              <span><span className="tech-label text-primary">Email</span> - katlehomakoro07@gmail.com</span>
+              <span>
+                <span className="tech-label text-primary">Email</span> -{" "}
+                <a className="hover:text-primary" href={SITE.socials.email}>
+                  katlehomakoro07@gmail.com
+                </a>
+              </span>
             </p>
             <p className="flex items-center gap-3">
               <FiMapPin className="h-4 w-4 text-primary" aria-hidden="true" />
@@ -43,12 +48,16 @@ export default function ContactPage() {
               <FaLinkedin className="h-4 w-4" aria-hidden="true" />
               <span>LinkedIn</span>
             </a>
+            <a href={SITE.socials.email}>
+              <FaEnvelope className="h-4 w-4" aria-hidden="true" />
+              <span>Email</span>
+            </a>
           </div>
         </div>
 
         <form
           className="contact-form"
-          action="mailto:katlehomakoro07@gmail.com"
+          action={SITE.socials.email}
           method="post"
           encType="text/plain"
         >

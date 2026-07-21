@@ -25,13 +25,6 @@ export default function AboutPage() {
     },
   ];
 
-  const workingStyle = [
-    "I break complex tasks into manageable milestones so progress remains visible and easier to test.",
-    "I document key decisions and trade-offs to help teams understand system behaviour and future impact.",
-    "I prioritise reliability, clear user feedback, and predictable application behaviour in the systems I build.",
-    "I communicate risks or blockers early and stay focused on maintaining steady delivery progress.",
-  ];
-
   return (
     <main className="space-y-8">
       <SectionTitle
@@ -103,29 +96,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-[1.3fr_1fr]">
-        <article className="tech-panel rounded-lg p-6">
-          <h2 className="text-lg font-semibold tracking-tight text-foreground">
-            How I work
-          </h2>
-          <ul className="mt-3 space-y-2 text-sm leading-7 text-muted-foreground">
-            {workingStyle.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </article>
-
-        <article className="tech-panel rounded-lg p-6">
-          <h2 className="text-lg font-semibold tracking-tight text-foreground">
-            Current focus
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            Seeking opportunities where I can contribute as a software developer,
-            grow with experienced teams, and deliver measurable value through
-            thoughtful engineering.
-          </p>
-        </article>
-      </section>
     </main>
   );
 }

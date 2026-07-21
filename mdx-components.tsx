@@ -1,4 +1,8 @@
 import type { MDXComponents } from "mdx/types";
+import {
+  CaseStudyGallery,
+  CaseStudyScreenshot,
+} from "@/components/molecules/CaseStudyMedia";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -26,6 +30,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </pre>
     ),
+    CaseStudyGallery,
+    CaseStudyScreenshot,
     ...components,
   };
 }

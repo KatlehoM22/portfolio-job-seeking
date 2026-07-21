@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaDatabase, FaGithub, FaLinkedin, FaServer } from "react-icons/fa";
+import { FaDatabase, FaEnvelope, FaGithub, FaLinkedin, FaServer } from "react-icons/fa";
 import { SiReact } from "react-icons/si";
 import { TechIcon } from "@/components/atoms/TechIcon";
 import { SITE } from "@/lib/constants";
@@ -14,7 +14,7 @@ const capabilities = [
 ];
 
 export default async function Home() {
-  const projects = (await getProjectSummaries()).slice(0, 2);
+  const projects = (await getProjectSummaries()).slice(0, 3);
 
   return (
     <main>
@@ -41,6 +41,10 @@ export default async function Home() {
             <a href={SITE.socials.linkedin} target="_blank" rel="noreferrer">
               <FaLinkedin className="h-4 w-4" aria-hidden="true" />
               <span>LinkedIn</span>
+            </a>
+            <a href={SITE.socials.email}>
+              <FaEnvelope className="h-4 w-4" aria-hidden="true" />
+              <span>Email</span>
             </a>
           </div>
         </div>
@@ -89,7 +93,7 @@ export default async function Home() {
           <div><p className="section-index">03 / PROJECTS</p><h2>Projects & case studies</h2></div>
           <Link href={ROUTES.projects} className="text-link">View all projects <span>↗</span></Link>
         </div>
-        <div className="project-card-grid">
+        <div className="project-card-grid home-project-card-grid">
           {projects.map((project, index) => (
             <Link href={`/projects/${project.slug}`} className="tech-panel project-card" key={project.slug}>
               <div className="project-card-topline">

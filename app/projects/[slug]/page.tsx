@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SectionTitle } from "@/components/atoms/SectionTitle";
+import { CaseStudyScreenshot } from "@/components/molecules/CaseStudyMedia";
 import { ExpandableCaseStudy } from "@/components/organisms/ExpandableCaseStudy";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
 
@@ -55,6 +56,14 @@ export default async function ProjectDetailPage({ params }: Props) {
           </li>
         ))}
       </ul>
+
+      <CaseStudyScreenshot
+        src={project.meta.screenshot}
+        alt={`${project.meta.title} application overview`}
+        label="Product overview"
+        caption="A representative view of the product and its primary user experience."
+        priority
+      />
 
       <ExpandableCaseStudy>
         <Content />

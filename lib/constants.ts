@@ -7,6 +7,7 @@ export const SITE = {
   socials: {
     github: "https://github.com/KatlehoM22",
     linkedin: "https://www.linkedin.com/in/katleho-makoro",
+    email: "mailto:katlehomakoro07@gmail.com",
   },
 } as const;
 
