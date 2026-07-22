@@ -1,43 +1,234 @@
 export const metadata = {
-  title: "Portfolio Platform Architecture",
+  title: "Developer Portfolio Platform",
   summary:
-    "Built a content-driven portfolio platform using MDX to separate presentation from technical narratives.",
-  stack: ["Next.js", "MDX", "TypeScript", "Tailwind CSS"],
-  screenshot: "/projects/portfolio_screenshot.png"
+    "Designed and built a responsive, content-driven portfolio that presents technical projects as maintainable MDX case studies.",
+  stack: ["Next.js", "React", "TypeScript", "MDX", "Tailwind CSS"],
+  screenshot: "/projects/portfolio_screenshot.png",
 };
 
-# Context
-Static portfolio pages become hard to maintain when every project requires
-manual JSX edits.
+# Project overview
 
-# Problem
-I needed a system where project narratives can evolve quickly without touching
-layout code.
+This portfolio is a responsive personal website designed to present my skills,
+experience, and project work clearly to recruiters and engineering teams. It is
+more than a collection of static pages: it is a reusable publishing platform
+where project metadata, screenshots, and long-form case studies can evolve
+without duplicating page layouts.
 
-# Solution
-Project content is stored as MDX files, while list and detail pages pull
-metadata dynamically via a typed loader.
+The finished site combines a distinctive developer-focused visual identity
+with structured content, accessible interactions, responsive layouts, and
+statically generated project pages.
 
-## Content Flow
+## At a glance
+
+- **Role:** Designer and Frontend Developer
+- **Year:** 2026
+- **Platform:** Responsive portfolio website
+- **Status:** Active and continuously improved
+- **Audience:** Recruiters, hiring managers, and software-development teams
+
+## The problem
+
+A conventional portfolio can quickly become difficult to maintain when every
+new project requires another manually assembled page. It can also leave
+recruiters with attractive screenshots but little evidence of the developer's
+decisions, responsibilities, or problem-solving process.
+
+I needed a portfolio that could:
+
+- communicate my professional profile within a short recruiter review;
+- present projects as evidence-based case studies rather than image galleries;
+- keep project content separate from reusable application layouts;
+- remain visually consistent as new pages and projects are added;
+- work comfortably across desktop and mobile screens;
+- make updates straightforward without introducing duplicated code.
+
+## My role
+
+I designed and implemented the portfolio from end to end. My contribution
+included:
+
+- defining the information architecture and visual direction;
+- designing the homepage, project cards, case-study experience, About, Skills,
+  CV, and Contact pages;
+- building reusable components for navigation, cards, headings, technology
+  icons, screenshot media, and expandable case studies;
+- creating a shared design-token system for colour, spacing, typography, and
+  borders;
+- implementing a typed MDX content pipeline for project metadata and narratives;
+- developing responsive layouts for full-width desktop presentation and
+  readable mobile navigation;
+- adding semantic structure, keyboard-accessible controls, focus states, and
+  reduced-motion support;
+- validating changes with ESLint, TypeScript, and production builds.
+
+## The solution
+
+### Recruiter-focused information hierarchy
+
+The homepage starts with a concise role statement, professional summary, clear
+project and contact actions, and direct links to GitHub, LinkedIn, and email.
+Project cards then provide immediate visual proof, a short outcome-oriented
+summary, and the relevant technology stack.
+
+Each project detail page follows a predictable sequence: title and value
+proposition, technology stack, primary screenshot, and a collapsed case-study
+preview. Readers can expand the narrative when they want more detail without
+being presented with a long wall of text on arrival.
+
+### Content-driven project architecture
+
+Every case study lives in `content/projects` as an MDX file. A project exports
+typed metadata—title, summary, stack, and an optional screenshot—alongside its
+long-form content.
+
+The project loader discovers those files, derives their slugs, normalises the
+metadata, and supplies both the project index and dynamic detail routes. Adding
+a project therefore requires content rather than another custom page component.
+
 ```mermaid
-flowchart TD
-  MDX[MDX Files] --> Loader[lib/projects.ts]
-  Loader --> List[Projects Index Page]
-  Loader --> Detail[Dynamic Project Detail Page]
+flowchart LR
+  MDX[MDX case studies] --> Loader[Typed project loader]
+  Loader --> Index[Projects index]
+  Loader --> Home[Homepage cards]
+  Loader --> Detail[Static project detail pages]
 ```
+
+### Reusable design system
+
+The interface uses shared CSS variables for the background, surfaces,
+foreground colours, borders, accents, spacing, radii, and typography. Reusable
+`tech-panel`, label, button, media, and card patterns create consistency without
+repeating long groups of styles across pages.
+
+Components are organised into atoms, molecules, organisms, and layout
+primitives. This keeps small presentation elements separate from composed
+features such as the header, footer, project cards, and expandable case-study
+panel.
+
+### Screenshot presentation
+
+Case studies support one prominent 16:9 product image followed by smaller,
+contextual screenshots inside the expanded narrative. Missing images render as
+labelled placeholders with useful captions, so the layout remains deliberate
+while new anonymised screenshots are prepared.
 
 <CaseStudyGallery>
   <CaseStudyScreenshot
     label="Projects index"
-    caption="The content-driven project listing generated from typed MDX metadata."
+    caption="The content-driven project listing generated from shared MDX metadata."
   />
   <CaseStudyScreenshot
     label="Case study experience"
-    caption="The reusable detail-page layout for technical narratives and project evidence."
+    caption="The expandable detail layout combining project evidence with a structured technical narrative."
   />
 </CaseStudyGallery>
 
-# Outcome
-- Content and layout are cleanly separated.
-- Adding a new project requires adding one MDX file.
-- Architecture and communication quality are now part of the portfolio itself.
+### Responsive and accessible interaction
+
+The site uses full-width layouts with responsive page gutters rather than a
+narrow fixed container. Project cards remain in a single row on the homepage
+and become horizontally scrollable on small screens, preserving readable card
+widths.
+
+Navigation landmarks, descriptive link labels, semantic articles and figures,
+keyboard-accessible buttons, visible focus states, alternative text, and
+reduced-motion styles improve usability beyond pointer-based desktop browsing.
+
+## Key engineering decisions
+
+### Use MDX for technical storytelling
+
+Project narratives need headings, lists, diagrams, screenshots, captions, and
+reusable interactive components. MDX provides that flexibility while keeping
+the content readable and version-controlled alongside the application.
+
+### Generate routes from the content directory
+
+Maintaining a separate hard-coded list of project routes would create two
+sources of truth. Deriving slugs and summaries from the MDX files ensures the
+homepage, project index, metadata, and static routes remain aligned.
+
+### Keep presentation reusable
+
+Screenshot frames, project cards, technology icons, and case-study behaviour
+are implemented once and reused across projects. Individual case studies only
+describe what is unique about the project.
+
+### Collapse long narratives by default
+
+Detailed case studies demonstrate engineering depth, but a recruiter may first
+scan the page in seconds. The expandable panel exposes enough context to invite
+interest while allowing the complete narrative to remain available on demand.
+
+### Prefer static generation
+
+Portfolio content changes less often than it is read. Generating project pages
+at build time provides fast page delivery and avoids introducing a database or
+content-management service that the project does not need.
+
+## Technical challenges
+
+### Balancing visual identity with readability
+
+The grid background, dark palette, bright accents, and monospace labels create
+a recognisable developer aesthetic. I limited those treatments to structural
+and interactive elements while using conventional typography and spacing for
+long-form content.
+
+### Supporting rich MDX content consistently
+
+Raw MDX elements can look disconnected from the application. Shared MDX
+component mappings give headings, paragraphs, lists, code blocks, galleries,
+and screenshots consistent styling without requiring presentation markup in
+every case study.
+
+### Presenting long case studies without clutter
+
+Adding detailed project narratives and multiple screenshots increased the risk
+of overwhelming the page. A primary image, collapsed content preview, fade cue,
+bottom-corner expansion control, and contextual two-image galleries create a
+progressive reading experience.
+
+### Maintaining responsiveness after moving full width
+
+Removing the narrow centred container gave projects more room, but cards and
+media still needed sensible minimum widths. Responsive gutters, breakpoint
+rules, horizontal card scrolling, and stacked mobile galleries preserve the
+layout across screen sizes.
+
+## Outcome
+
+The portfolio now provides one consistent place to communicate my profile,
+technical capabilities, and project experience. Its content architecture makes
+new case studies faster to add and existing narratives easier to revise, while
+the reusable interface keeps those additions visually consistent.
+
+From an engineering perspective, the project demonstrates:
+
+- Next.js App Router and static page generation;
+- strict TypeScript and component-driven React development;
+- MDX content modelling and dynamic module loading;
+- responsive UI and reusable design-system thinking;
+- accessible interaction and semantic HTML;
+- technical communication through structured case studies;
+- production validation with linting and build checks.
+
+## What I learned
+
+- A portfolio should optimise first for fast comprehension, then offer depth.
+- Project outcomes and engineering decisions communicate more value than a
+  technology list alone.
+- Content architecture matters even for a relatively small personal website.
+- Reusable media and MDX components make visual consistency easier to maintain.
+- Responsive design requires testing content density, not only viewport width.
+- Accessibility works best when treated as part of component design from the
+  beginning.
+
+## Future improvements
+
+- Add automated accessibility checks to the test suite.
+- Expand end-to-end coverage for navigation and case-study interactions.
+- Add optimised screenshots for every contextual media placeholder.
+- Introduce project filters when the number of case studies increases.
+- Add structured metadata for richer search and social previews.
+- Continue measuring and improving performance across mobile devices.

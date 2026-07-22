@@ -140,6 +140,41 @@ a { color: inherit; text-decoration: none; }
 .case-study-media-image {
   object-fit: cover;
 }
+.case-study-media-open {
+  position: absolute;
+  inset: 0;
+  cursor: zoom-in;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+.case-study-media-open:focus-visible {
+  z-index: 2;
+  outline: 2px solid var(--primary);
+  outline-offset: -4px;
+}
+.case-study-media-zoom {
+  position: absolute;
+  right: .8rem;
+  bottom: .8rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  border: 1px solid rgba(0,240,181,.44);
+  border-radius: var(--radius-md);
+  background: rgba(3,8,12,.88);
+  color: var(--primary);
+  font: 700 .62rem/1 var(--font-mono);
+  letter-spacing: .06em;
+  padding: .55rem .65rem;
+  text-transform: uppercase;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.case-study-media-open:hover .case-study-media-zoom {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
 .case-study-media-placeholder {
   position: absolute;
   inset: 1rem;
@@ -183,6 +218,72 @@ a { color: inherit; text-decoration: none; }
 }
 .case-study-gallery .case-study-media-placeholder {
   inset: .75rem;
+}
+.case-study-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  background: rgba(1,4,7,.94);
+  backdrop-filter: blur(10px);
+}
+.case-study-lightbox-dialog {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  width: min(96vw, 1600px);
+  height: min(92vh, 1000px);
+  overflow: hidden;
+  border: 1px solid rgba(0,240,181,.34);
+  border-radius: var(--radius-lg);
+  background: #05080c;
+  box-shadow: 0 28px 90px rgba(0,0,0,.6);
+}
+.case-study-lightbox-image {
+  position: relative;
+  min-height: 0;
+  margin: 1rem;
+}
+.case-study-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  place-items: center;
+  border: 1px solid rgba(0,240,181,.5);
+  border-radius: 999px;
+  background: rgba(3,8,12,.92);
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+.case-study-lightbox-close:hover {
+  border-color: var(--primary);
+  background: rgba(0,240,181,.1);
+}
+.case-study-lightbox-close:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+.case-study-lightbox-caption {
+  display: grid;
+  gap: .35rem;
+  border-top: 1px solid var(--border);
+  padding: .9rem 1rem 1rem;
+  color: var(--muted-foreground);
+  font-size: .78rem;
+  line-height: 1.5;
+}
+.case-study-lightbox-caption span {
+  color: var(--primary);
+  font: 700 .65rem/1 var(--font-mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
 .about-profile-grid {
@@ -450,6 +551,13 @@ a { color: inherit; text-decoration: none; }
 }
 .project-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .home-project-card-grid { grid-template-columns: repeat(3, minmax(280px, 1fr)); }
+.home-project-card-grid .project-card {
+  min-height: 540px;
+  padding: 2.25rem;
+}
+.home-project-card-grid .project-screenshot-frame {
+  min-height: clamp(210px, 15vw, 280px);
+}
 .project-card {
   display: flex;
   min-height: 460px;
