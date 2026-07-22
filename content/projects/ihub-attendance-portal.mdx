@@ -12,7 +12,26 @@ export const metadata = {
     "Express",
     "PostgreSQL",
   ],
-  screenshot: "/projects/attendance_portal/attendance_admin_dashboard.png",
+  screenshots: [
+    {
+      src: "/projects/attendance_portal/attendance_admin_dashboard.png",
+      label: "Administrator dashboard",
+      caption:
+        "Organisation-wide attendance analytics, reporting controls, and integration health.",
+    },
+    {
+      src: "/projects/attendance_portal/attendance_manager_dashboard.png",
+      label: "Manager dashboard",
+      caption:
+        "Attendance risks, pending requests, and province-level trends in one operational view.",
+    },
+    {
+      src: "/projects/attendance_portal/attendance_student_dashboard.png",
+      label: "Trainee dashboard",
+      caption:
+        "Personal attendance summaries, status visibility, and request tracking for trainees.",
+    },
+  ],
 };
 
 # Project overview
@@ -85,19 +104,6 @@ reports.
 assignments, configure attendance rules and programme phases, export data,
 review audit and synchronisation activity, and monitor database, email, and
 DreamClass service health.
-
-<CaseStudyGallery>
-  <CaseStudyScreenshot
-    src="/projects/attendance_portal/attendance_manager_dashboard.png"
-    label="Manager dashboard"
-    caption="Attendance risks, pending requests, and province-level trends in one operational view."
-  />
-  <CaseStudyScreenshot
-    src="/projects/attendance_portal/attendance_student_dashboard.png"
-    label="Request management"
-    caption="The review workflow used to approve, reject, and audit attendance-related requests."
-  />
-</CaseStudyGallery>
 
 ### Request lifecycle
 

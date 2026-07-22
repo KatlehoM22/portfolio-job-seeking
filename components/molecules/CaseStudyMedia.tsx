@@ -2,8 +2,14 @@
 
 import Image from "next/image";
 import { createPortal } from "react-dom";
-import { FiImage, FiMaximize2, FiX } from "react-icons/fi";
-import { useEffect, useState, type ReactNode } from "react";
+import {
+  FiChevronLeft,
+  FiChevronRight,
+  FiImage,
+  FiMaximize2,
+  FiX,
+} from "react-icons/fi";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type CaseStudyScreenshotProps = {
   label: string;
@@ -11,6 +17,13 @@ type CaseStudyScreenshotProps = {
   src?: string;
   alt?: string;
   priority?: boolean;
+};
+
+export type CaseStudyCarouselImage = {
+  src: string;
+  label: string;
+  caption: string;
+  alt?: string;
 };
 
 export function CaseStudyScreenshot({
@@ -122,4 +135,148 @@ export function CaseStudyScreenshot({
 
 export function CaseStudyGallery({ children }: { children: ReactNode }) {
   return <div className="case-study-gallery">{children}</div>;
+}
+
+type CaseStudyCarouselProps = {
+  screenshots: CaseStudyCarouselImage[];
+  title: string;
+};
+
+export function CaseStudyCarousel({
+  screenshots,
+  title,
+}: CaseStudyCarouselProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const ignoreClick = useRef(false);
+
+  if (screenshots.length === 0) {
+    return (
+      <CaseStudyScreenshot
+        label="Product overview"
+        caption="Add representative product screenshots to this case study."
+      />
+    );
+  }
+
+  const currentScreenshot = screenshots[currentIndex] ?? screenshots[0];
+  const hasMultipleScreenshots = screenshots.length > 1;
+
+  function showPrevious() {
+    setCurrentIndex((index) =>
+      index === 0 ? screenshots.length - 1 : index - 1,
+    );
+  }
+
+  function showNext() {
+    setCurrentIndex((index) => (index + 1) % screenshots.length);
+  }
+
+  function handleSwipe(endX: number) {
+    if (touchStartX.current === null || !hasMultipleScreenshots) return;
+
+    const distance = endX - touchStartX.current;
+    touchStartX.current = null;
+
+    if (Math.abs(distance) < 50) return;
+
+    ignoreClick.current = true;
+    if (distance > 0) showPrevious();
+    else showNext();
+
+    window.setTimeout(() => {
+      ignoreClick.current = false;
+    }, 400);
+  }
+
+  return (
+    <section
+      className="case-study-carousel"
+      aria-label={`${title} screenshots`}
+      aria-roledescription="carousel"
+      tabIndex={0}
+      onKeyDown={(event) => {
+        if (!hasMultipleScreenshots) return;
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          showPrevious();
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          showNext();
+        }
+      }}
+      onTouchStart={(event) => {
+        touchStartX.current = event.touches[0]?.clientX ?? null;
+      }}
+      onTouchEnd={(event) => {
+        handleSwipe(event.changedTouches[0]?.clientX ?? 0);
+      }}
+      onClickCapture={(event) => {
+        if (!ignoreClick.current) return;
+        event.preventDefault();
+        event.stopPropagation();
+        ignoreClick.current = false;
+      }}
+    >
+      <p className="sr-only" aria-live="polite">
+        Screenshot {currentIndex + 1} of {screenshots.length}:{" "}
+        {currentScreenshot.label}
+      </p>
+
+      <div className="case-study-carousel-stage">
+        <CaseStudyScreenshot
+          key={currentScreenshot.src}
+          src={currentScreenshot.src}
+          alt={currentScreenshot.alt ?? `${title} — ${currentScreenshot.label}`}
+          label={currentScreenshot.label}
+          caption={currentScreenshot.caption}
+          priority={currentIndex === 0}
+        />
+
+        {hasMultipleScreenshots && (
+          <>
+            <button
+              type="button"
+              className="case-study-carousel-arrow is-previous"
+              aria-label="Show previous screenshot"
+              onClick={showPrevious}
+            >
+              <FiChevronLeft aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className="case-study-carousel-arrow is-next"
+              aria-label="Show next screenshot"
+              onClick={showNext}
+            >
+              <FiChevronRight aria-hidden="true" />
+            </button>
+          </>
+        )}
+      </div>
+
+      {hasMultipleScreenshots && (
+        <div className="case-study-carousel-controls">
+          <div className="case-study-carousel-dots" aria-label="Choose screenshot">
+            {screenshots.map((screenshot, index) => (
+              <button
+                key={screenshot.src}
+                type="button"
+                className={index === currentIndex ? "is-active" : ""}
+                aria-label={`Show screenshot ${index + 1}: ${screenshot.label}`}
+                aria-current={index === currentIndex ? "true" : undefined}
+                onClick={() => setCurrentIndex(index)}
+              />
+            ))}
+          </div>
+
+          <span className="case-study-carousel-count" aria-hidden="true">
+            {String(currentIndex + 1).padStart(2, "0")} /{" "}
+            {String(screenshots.length).padStart(2, "0")}
+          </span>
+        </div>
+      )}
+    </section>
+  );
 }

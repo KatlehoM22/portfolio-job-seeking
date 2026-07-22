@@ -2,16 +2,30 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import type { ComponentType } from "react";
 
+export type ProjectScreenshot = {
+  src: string;
+  label: string;
+  caption: string;
+  alt?: string;
+};
+
 type ProjectMeta = {
   slug: string;
   title: string;
   summary: string;
   stack: string[];
   screenshot?: string;
+  screenshots: ProjectScreenshot[];
+};
+
+type ImportedProjectMetadata = Partial<
+  Omit<ProjectMeta, "slug" | "screenshots">
+> & {
+  screenshots?: ProjectScreenshot[];
 };
 
 type ImportedProjectModule = {
-  metadata?: Partial<Omit<ProjectMeta, "slug">>;
+  metadata?: ImportedProjectMetadata;
   default: ComponentType;
 };
 
@@ -39,12 +53,30 @@ function normalizeProjectMeta(
   slug: string,
   metadata: ImportedProjectModule["metadata"],
 ): ProjectMeta {
+  const screenshots = Array.isArray(metadata?.screenshots)
+    ? metadata.screenshots.filter(
+        (item): item is ProjectScreenshot =>
+          typeof item?.src === "string" &&
+          typeof item?.label === "string" &&
+          typeof item?.caption === "string",
+      )
+    : [];
+
+  if (screenshots.length === 0 && metadata?.screenshot) {
+    screenshots.push({
+      src: metadata.screenshot,
+      label: "Product overview",
+      caption: "A representative view of the product and its primary experience.",
+    });
+  }
+
   return {
     slug,
     title: metadata?.title ?? slug,
     summary: metadata?.summary ?? "",
     stack: Array.isArray(metadata?.stack) ? metadata.stack : [],
-    screenshot: metadata?.screenshot,
+    screenshot: screenshots[0]?.src ?? metadata?.screenshot,
+    screenshots,
   };
 }
 
