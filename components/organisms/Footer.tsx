@@ -33,9 +33,6 @@ export function Footer() {
               <FaEnvelope className="h-3.5 w-3.5" aria-hidden="true" />
             </a>
           </div>
-          <p className="footer-tagline tech-label text-[0.65rem] text-primary">
-            Dark-mode is Dev-mode
-          </p>
         </div>
       </div>
     </footer>

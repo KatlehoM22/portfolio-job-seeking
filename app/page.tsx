@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FaDatabase, FaEnvelope, FaGithub, FaLinkedin, FaServer } from "react-icons/fa";
 import { SiReact } from "react-icons/si";
 import { TechIcon } from "@/components/atoms/TechIcon";
+import { ThemeToggle } from "@/components/atoms/ThemeToggle";
 import { SITE } from "@/lib/constants";
 import { ROUTES } from "@/lib/routes";
 import { getProjectSummaries } from "@/lib/projects";
@@ -22,12 +23,12 @@ export default async function Home() {
         <div className="hero-orbit hero-orbit-one" />
         <div className="hero-orbit hero-orbit-two" />
         <div className="hero-content rise-in">
+          <ThemeToggle />
           <p className="hero-kicker"><span>{"//"}</span> HELLO, WORLD</p>
           <h1 className="hero-title">
             I&apos;m <span>{SITE.name}</span>
           </h1>
           <p className="hero-role"><span>&gt;</span> Junior Software Developer<span className="cursor">_</span></p>
-          <p className="hero-tagline">Dark-mode is Dev-mode</p>
           <p className="hero-summary">{SITE.summary}</p>
           <div className="hero-actions">
             <Link href={ROUTES.projects} className="button button-primary">view_projects()</Link>
@@ -48,7 +49,6 @@ export default async function Home() {
             </a>
           </div>
         </div>
-        <a href="#about-preview" className="scroll-cue" aria-label="Scroll to introduction"><span /></a>
       </section>
 
       <section id="about-preview" className="home-section split-intro">

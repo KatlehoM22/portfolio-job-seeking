@@ -8,7 +8,9 @@ import {
   FaDatabase,
   FaJava,
   FaLock,
+  FaRobot,
   FaServer,
+  FaTools,
   FaVial,
 } from "react-icons/fa";
 import { MdDevices } from "react-icons/md";
@@ -37,12 +39,26 @@ const skillGroups = [
   },
   {
     area: "Engineering",
-    items: ["Component architecture", "Testing basics", "Documentation", "CI-aware workflows"],
+    items: [
+      "Component architecture",
+      "Testing basics",
+      "Documentation",
+      "CI-aware workflows",
+      "AI-assisted software development",
+    ],
   },
   {
     area: "Databases",
-    items: ["PostgreSQL", "MySQL","Database design principles"],
-  }
+    items: ["PostgreSQL", "MySQL", "Database design principles"],
+  },
+  {
+    area: "Tools",
+    items: [
+      "AI coding assistants",
+      "AI-assisted prototyping and debugging",
+      "Human-reviewed code validation",
+    ],
+  },
 ];
 
 const skillIcons: Record<string, IconType> = {
@@ -61,9 +77,13 @@ const skillIcons: Record<string, IconType> = {
   "Testing basics": FaVial,
   Documentation: FaBookOpen,
   "CI-aware workflows": FaCodeBranch,
+  "AI-assisted software development": FaRobot,
   PostgreSQL: SiPostgresql,
   MySQL: SiMysql,
   "Database design principles": FaDatabase,
+  "AI coding assistants": FaTools,
+  "AI-assisted prototyping and debugging": FaRobot,
+  "Human-reviewed code validation": FaVial,
 };
 
 export default function SkillsPage() {

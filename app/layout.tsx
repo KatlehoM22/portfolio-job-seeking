@@ -16,13 +16,25 @@ export const metadata: Metadata = {
   },
 };
 
+const themeScript = `
+  try {
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    document.documentElement.dataset.theme = savedTheme === "light" ? "light" : "dark";
+  } catch {
+    document.documentElement.dataset.theme = "dark";
+  }
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="bg-background text-foreground antialiased">
         <Header />
         <PageContainer>{children}</PageContainer>
