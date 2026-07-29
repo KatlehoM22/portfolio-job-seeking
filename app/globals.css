@@ -508,6 +508,22 @@ a { color: inherit; text-decoration: none; }
   justify-self: start;
   cursor: pointer;
 }
+.contact-submit:disabled {
+  cursor: wait;
+  opacity: .68;
+  transform: none;
+}
+.contact-field-error,
+.contact-form-error {
+  color: #ff8795;
+  font-size: .78rem;
+  line-height: 1.5;
+}
+.contact-form-success {
+  min-height: 360px;
+  align-content: center;
+  justify-items: start;
+}
 
 .hero-shell {
   min-height: calc(100vh - 73px); position: relative; display: grid; place-items: center start; overflow: hidden;
@@ -838,6 +854,10 @@ a { color: inherit; text-decoration: none; }
 :root[data-theme="light"] .social-links a,
 :root[data-theme="light"] .button-secondary {
   background: rgba(255,255,255,.82);
+}
+:root[data-theme="light"] .contact-field-error,
+:root[data-theme="light"] .contact-form-error {
+  color: #b4233f;
 }
 :root[data-theme="light"] .hero-tagline,
 :root[data-theme="light"] .button-secondary:hover,

@@ -1,7 +1,8 @@
 import { SectionTitle } from "@/components/atoms/SectionTitle";
+import { ContactForm } from "@/components/molecules/ContactForm";
 import { SITE } from "@/lib/constants";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
-import { FiMail, FiMapPin, FiSend } from "react-icons/fi";
+import { FiMail, FiMapPin } from "react-icons/fi";
 
 export default function ContactPage() {
   return (
@@ -55,36 +56,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <form
-          className="contact-form"
-          action={SITE.socials.email}
-          method="post"
-          encType="text/plain"
-        >
-          <label>
-            <span>Name</span>
-            <input type="text" name="name" placeholder="Your name" required />
-          </label>
-
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" placeholder="you@example.com" required />
-          </label>
-
-          <label>
-            <span>Message</span>
-            <textarea
-              name="message"
-              placeholder="Tell me about the opportunity..."
-              rows={5}
-              required
-            />
-          </label>
-
-          <button type="submit" className="button button-primary contact-submit">
-            Send message <FiSend className="h-4 w-4" aria-hidden="true" />
-          </button>
-        </form>
+        <ContactForm />
       </div>
     </main>
   );
