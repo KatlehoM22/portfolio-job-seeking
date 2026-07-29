@@ -9,13 +9,13 @@ export default function AboutPage() {
       title: "Full-stack delivery",
       icon: FaLayerGroup,
       detail:
-        "I am comfortable taking a feature from initial requirement through frontend implementation, backend logic, database interaction, and final testing.I focus on building soultions that are reliable and easy for teams to maintain.",
+        "I am comfortable taking a feature from initial requirements through frontend implementation, backend logic, database interaction, and final testing. I focus on building solutions that are reliable and easy for teams to maintain.",
     },
     {
       title: "Structured system thinking",
       icon: FaProjectDiagram,
       detail:
-        "I approach development with a focus on clear separation between UI, business logic, and data layers. This helps me design applications that remain understandableand scalable.",
+        "I approach development with a focus on clear separation between UI, business logic, and data layers. This helps me design applications that remain understandable and scalable.",
     },
     {
       title: "Practical problem solving",
@@ -40,7 +40,7 @@ export default function AboutPage() {
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
             I am a {SITE.location}-based developer with experience building modern web applications 
-            using Javascript frameworks, RESTful APIs, and relational databases.
+            using JavaScript frameworks, RESTful APIs, and relational databases.
             My work focuses on translating business requirements into scalable and 
             maintainable systems that support real operational workflows. I care about writing code
             that teams can read, trust, and extend.
@@ -49,7 +49,7 @@ export default function AboutPage() {
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
             I hold a diploma in Computer Science. My technical foundation includes academic exposure to Java, object-oriented 
             programming principles, data structures, and relational database design. These fundamentals have shaped my approach 
-            towards backend logic, data modeling, and structured application development.
+            to backend logic, data modeling, and structured application development.
           </p>
         </article>
 
