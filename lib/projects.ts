@@ -9,6 +9,10 @@ export type ProjectScreenshot = {
   alt?: string;
 };
 
+export type ProjectGitHub =
+  | { status: "public"; url: string }
+  | { status: "private" | "unavailable" };
+
 type ProjectMeta = {
   slug: string;
   title: string;
@@ -16,12 +20,17 @@ type ProjectMeta = {
   stack: string[];
   screenshot?: string;
   screenshots: ProjectScreenshot[];
+  github: ProjectGitHub;
 };
 
 type ImportedProjectMetadata = Partial<
-  Omit<ProjectMeta, "slug" | "screenshots">
+  Omit<ProjectMeta, "slug" | "screenshots" | "github">
 > & {
   screenshots?: ProjectScreenshot[];
+  github?: {
+    status?: string;
+    url?: string;
+  };
 };
 
 type ImportedProjectModule = {
@@ -70,6 +79,17 @@ function normalizeProjectMeta(
     });
   }
 
+  let github: ProjectGitHub = { status: "unavailable" };
+
+  if (metadata?.github?.status === "private") {
+    github = { status: "private" };
+  } else if (
+    metadata?.github?.status === "public" &&
+    typeof metadata.github.url === "string"
+  ) {
+    github = { status: "public", url: metadata.github.url };
+  }
+
   return {
     slug,
     title: metadata?.title ?? slug,
@@ -77,6 +97,7 @@ function normalizeProjectMeta(
     stack: Array.isArray(metadata?.stack) ? metadata.stack : [],
     screenshot: screenshots[0]?.src ?? metadata?.screenshot,
     screenshots,
+    github,
   };
 }
 

@@ -15,5 +15,9 @@ declare module "*.mdx" {
       caption: string;
       alt?: string;
     }>;
+    github?: {
+      status: "public" | "private" | "unavailable";
+      url?: string;
+    };
   };
 }

@@ -30,6 +30,7 @@ export default async function ProjectsPage() {
             summary={project.summary}
             stack={project.stack}
             screenshot={project.screenshot}
+            github={project.github}
             index={index}
           />
         ))}

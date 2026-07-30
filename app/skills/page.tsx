@@ -17,13 +17,17 @@ import {
 import { MdDevices } from "react-icons/md";
 import {
   SiExpress,
+  SiGit,
+  SiGithub,
   SiJavascript,
   SiMysql,
   SiNodedotjs,
+  SiPostman,
   SiPostgresql,
   SiReact,
   SiTailwindcss,
 } from "react-icons/si";
+import { VscVscode } from "react-icons/vsc";
 
 export const metadata = createPageMetadata({
   title: "Skills",
@@ -52,7 +56,6 @@ const skillGroups = [
       "Testing basics",
       "Documentation",
       "CI-aware workflows",
-      "AI-assisted software development",
     ],
   },
   {
@@ -62,6 +65,10 @@ const skillGroups = [
   {
     area: "Tools",
     items: [
+      "Git",
+      "GitHub",
+      "VS Code",
+      "Postman",
       "AI coding assistants",
       "AI-assisted prototyping and debugging",
       "Human-reviewed code validation",
@@ -85,10 +92,13 @@ const skillIcons: Record<string, IconType> = {
   "Testing basics": FaVial,
   Documentation: FaBookOpen,
   "CI-aware workflows": FaCodeBranch,
-  "AI-assisted software development": FaRobot,
   PostgreSQL: SiPostgresql,
   MySQL: SiMysql,
   "Database design principles": FaDatabase,
+  Git: SiGit,
+  GitHub: SiGithub,
+  "VS Code": VscVscode,
+  Postman: SiPostman,
   "AI coding assistants": FaTools,
   "AI-assisted prototyping and debugging": FaRobot,
   "Human-reviewed code validation": FaVial,

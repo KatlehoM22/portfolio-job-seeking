@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaDatabase, FaEnvelope, FaGithub, FaLinkedin, FaServer } from "react-icons/fa";
 import { SiReact } from "react-icons/si";
-import { TechIcon } from "@/components/atoms/TechIcon";
+import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { ThemeToggle } from "@/components/atoms/ThemeToggle";
 import { SITE } from "@/lib/constants";
 import { ROUTES } from "@/lib/routes";
@@ -95,42 +95,16 @@ export default async function Home() {
         </div>
         <div className="project-card-grid home-project-card-grid">
           {projects.map((project, index) => (
-            <Link href={`/projects/${project.slug}`} className="tech-panel project-card" key={project.slug}>
-              <div className="project-card-topline">
-                <span>0{index + 1}</span>
-                <span>case_study()</span>
-              </div>
-              <div className="project-screenshot-frame">
-                {project.screenshot ? (
-                  <Image
-                    src={project.screenshot}
-                    alt={`${project.title} screenshot`}
-                    fill
-                    sizes="(max-width: 720px) calc(100vw - 2.5rem), 540px"
-                    className="project-screenshot-image"
-                  />
-                ) : (
-                  <div className="project-screenshot-placeholder">
-                    <span className="tech-label">Project screenshot</span>
-                    <p>Add screenshot here</p>
-                  </div>
-                )}
-              </div>
-              <div>
-                <h3>{project.title}</h3>
-                <p>{project.summary}</p>
-              </div>
-              <ul>
-                {project.stack.map((item) => (
-                  <li key={item}>
-                    <TechIcon name={item} />
-                    <span>-</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <span className="project-card-link">View project <span>↗</span></span>
-            </Link>
+            <ProjectCard
+              key={project.slug}
+              slug={project.slug}
+              title={project.title}
+              summary={project.summary}
+              stack={project.stack}
+              screenshot={project.screenshot}
+              github={project.github}
+              index={index}
+            />
           ))}
         </div>
       </section>

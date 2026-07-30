@@ -1,15 +1,7 @@
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
-import { NavLink } from "@/components/atoms/NavLink";
-import { FiCode, FiFileText, FiFolder, FiMail, FiUser } from "react-icons/fi";
-
-const links = [
-  { href: ROUTES.about, label: "About", icon: FiUser },
-  { href: ROUTES.skills, label: "Skills", icon: FiCode },
-  { href: ROUTES.projects, label: "Projects", icon: FiFolder },
-  { href: ROUTES.cv, label: "CV", icon: FiFileText },
-  { href: ROUTES.contact, label: "Contact", icon: FiMail },
-];
+import { DesktopNavigation } from "@/components/organisms/DesktopNavigation";
+import { MobileNavigation } from "@/components/organisms/MobileNavigation";
 
 export function Header() {
   return (
@@ -25,11 +17,9 @@ export function Header() {
           &lt;KM /&gt;
         </Link>
 
-        <div className="flex flex-wrap items-center gap-1">
-          {links.map((link) => (
-            <NavLink key={link.href} href={link.href} label={link.label} icon={link.icon} />
-          ))}
-        </div>
+        <DesktopNavigation />
+
+        <MobileNavigation />
       </nav>
     </header>
   );

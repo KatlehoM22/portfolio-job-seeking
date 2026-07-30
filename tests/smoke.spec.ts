@@ -51,4 +51,34 @@ test.describe("portfolio smoke tests", () => {
       ).toBeVisible();
     });
   }
+
+  test("mobile navigation opens and closes accessibly", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+
+    const openButton = page.getByRole("button", {
+      name: "Open navigation menu",
+    });
+
+    await expect(openButton).toBeVisible();
+    await expect(openButton).toHaveAttribute("aria-expanded", "false");
+
+    await openButton.click();
+
+    const mobileNavigation = page.getByRole("navigation", {
+      name: "Mobile navigation",
+    });
+
+    await expect(mobileNavigation).toBeVisible();
+    await expect(page.getByRole("button", { name: "Close navigation menu" })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    await expect(mobileNavigation.getByRole("link", { name: "Projects" })).toBeVisible();
+
+    await page.keyboard.press("Escape");
+
+    await expect(mobileNavigation).not.toBeVisible();
+    await expect(openButton).toBeFocused();
+  });
 });
