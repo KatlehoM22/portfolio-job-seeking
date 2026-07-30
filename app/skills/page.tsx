@@ -1,5 +1,6 @@
 import { SectionTitle } from "@/components/atoms/SectionTitle";
 import { CERTIFICATES } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/metadata";
 import type { IconType } from "react-icons";
 import {
   FaBookOpen,
@@ -24,6 +25,13 @@ import {
   SiTailwindcss,
 } from "react-icons/si";
 
+export const metadata = createPageMetadata({
+  title: "Skills",
+  description:
+    "Explore Katleho Makoro's full-stack, database, enterprise development, and AI-assisted engineering skills.",
+  path: "/skills",
+});
+
 const skillGroups = [
   {
     area: "Languages",
@@ -35,7 +43,7 @@ const skillGroups = [
   },
   {
     area: "Backend",
-    items: ["Node.js", "Express.js", "REST APIs", "Data modeling", "Authentication fundamentals"],
+    items: ["Node.js", "Express.js", "REST APIs", "Data modelling", "Authentication fundamentals"],
   },
   {
     area: "Engineering",
@@ -71,7 +79,7 @@ const skillIcons: Record<string, IconType> = {
   "Node.js": SiNodedotjs,
   "Express.js": SiExpress,
   "REST APIs": FaServer,
-  "Data modeling": FaDatabase,
+  "Data modelling": FaDatabase,
   "Authentication fundamentals": FaLock,
   "Component architecture": FaCubes,
   "Testing basics": FaVial,

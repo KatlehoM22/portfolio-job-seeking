@@ -2,6 +2,14 @@ import { SectionTitle } from "@/components/atoms/SectionTitle";
 import Image from "next/image";
 import { FaBullseye, FaLayerGroup, FaProjectDiagram } from "react-icons/fa";
 import { SITE } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({
+  title: "About",
+  description:
+    "Learn about Katleho Makoro's software development background, technical foundation, and approach to building maintainable applications.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   const strengths = [
@@ -49,11 +57,11 @@ export default function AboutPage() {
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
             I hold a diploma in Computer Science. My technical foundation includes academic exposure to Java, object-oriented 
             programming principles, data structures, and relational database design. These fundamentals have shaped my approach 
-            to backend logic, data modeling, and structured application development.
+            to backend logic, data modelling, and structured application development.
           </p>
         </article>
 
-        <aside className="profile-photo-card tech-panel rounded-lg p-4" aria-label="Profile photo placeholder">
+        <aside className="profile-photo-card tech-panel rounded-lg p-4" aria-label="Professional profile photo">
           <div className="profile-photo-frame">
             <Image 
               src="/katleho_profile.jpg" 

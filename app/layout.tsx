@@ -3,14 +3,25 @@ import "./globals.css";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { Header } from "@/components/organisms/Header";
 import { Footer } from "@/components/organisms/Footer";
+import { createPageMetadata, SITE_URL } from "@/lib/metadata";
+
+const homeMetadata = createPageMetadata({
+  title: "Katleho Makoro | Junior Software Developer",
+  description:
+    "Portfolio of Katleho Makoro, a junior software developer building full-stack web applications, enterprise systems, APIs, and relational databases.",
+  path: "/",
+  socialTitle: "Katleho Makoro | Junior Software Developer",
+});
 
 export const metadata: Metadata = {
+  ...homeMetadata,
+  metadataBase: SITE_URL,
   title: {
-    default: "Katleho Makoro | Full-Stack Developer",
+    default: "Katleho Makoro | Junior Software Developer",
     template: "%s | Katleho Makoro",
   },
-  description:
-    "Enterprise-ready portfolio showcasing full-stack projects, architecture thinking, and delivery discipline.",
+  authors: [{ name: "Katleho Makoro" }],
+  creator: "Katleho Makoro",
   icons: {
     icon: "/icon.svg",
   },
@@ -31,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" data-theme="dark" suppressHydrationWarning>
+    <html lang="en-ZA" data-scroll-behavior="smooth" data-theme="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

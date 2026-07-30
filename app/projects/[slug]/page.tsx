@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { SectionTitle } from "@/components/atoms/SectionTitle";
 import { CaseStudyCarousel } from "@/components/molecules/CaseStudyMedia";
 import { ExpandableCaseStudy } from "@/components/organisms/ExpandableCaseStudy";
+import { createPageMetadata } from "@/lib/metadata";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
 
 type Props = {
@@ -22,10 +23,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Project Not Found" };
   }
 
-  return {
+  return createPageMetadata({
     title: project.meta.title,
     description: project.meta.summary,
-  };
+    path: `/projects/${slug}`,
+    image: project.meta.screenshot,
+  });
 }
 
 export default async function ProjectDetailPage({ params }: Props) {

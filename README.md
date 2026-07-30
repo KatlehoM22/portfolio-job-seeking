@@ -30,6 +30,16 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+For production metadata and canonical URLs, set the deployed site address in
+your hosting environment:
+
+```bash
+SITE_URL=https://your-production-domain.com
+```
+
+Vercel deployments automatically fall back to the project's production-domain
+environment variable when `SITE_URL` is not set.
+
 ## Scripts
 ```bash
 npm run dev    # local development

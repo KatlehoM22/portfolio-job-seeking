@@ -1,6 +1,14 @@
 import { SectionTitle } from "@/components/atoms/SectionTitle";
 import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { getProjectSummaries } from "@/lib/projects";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({
+  title: "Projects",
+  description:
+    "Technical case studies covering full-stack applications, system integrations, dashboards, APIs, and database-driven workflows.",
+  path: "/projects",
+});
 
 export default async function ProjectsPage() {
   const projects = await getProjectSummaries();

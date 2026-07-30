@@ -21,8 +21,8 @@ export const CERTIFICATES = [
     href: "/certificates/digital_certificate.pdf",
   },
   {
-    id: "entrepeneurship-certificate",
-    title: "Entrepeneurship",
+    id: "entrepreneurship-certificate",
+    title: "Entrepreneurship",
     issuer: "Yes4Youth",
     year: "2026",
     status: "Completed",
@@ -35,5 +35,5 @@ export const CERTIFICATES = [
     year: "2026",
     status: "Completed",
     href: "/certificates/work_readiness_certificate.pdf",
-  }
+  },
 ] as const;

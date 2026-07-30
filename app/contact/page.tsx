@@ -1,8 +1,16 @@
 import { SectionTitle } from "@/components/atoms/SectionTitle";
 import { ContactForm } from "@/components/molecules/ContactForm";
 import { SITE } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/metadata";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FiMail, FiMapPin } from "react-icons/fi";
+
+export const metadata = createPageMetadata({
+  title: "Contact",
+  description:
+    "Contact Katleho Makoro about junior software development opportunities, internships, and professional collaborations.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   FaBriefcase,
   FaCheckCircle,
@@ -6,12 +5,14 @@ import {
   FaLaptopCode,
 } from "react-icons/fa";
 import { SectionTitle } from "@/components/atoms/SectionTitle";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "CV",
   description:
     "Katleho Makoro's software development experience, education, and technical skills.",
-};
+  path: "/cv",
+});
 
 const experience = [
   {
