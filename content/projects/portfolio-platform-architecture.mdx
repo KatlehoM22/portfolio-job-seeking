@@ -36,6 +36,7 @@ statically generated project pages.
 - **Platform:** Responsive portfolio website
 - **Status:** Active and continuously improved
 - **Audience:** Recruiters, hiring managers, and software-development teams
+- **Development workflow:** AI-assisted implementation with human review and automated validation
 
 ## The problem
 
@@ -71,6 +72,51 @@ included:
 - adding semantic structure, keyboard-accessible controls, focus states, and
   reduced-motion support;
 - validating changes with ESLint, TypeScript, and production builds.
+
+## AI-assisted engineering workflow
+
+I used AI coding assistants to accelerate selected parts of development while
+retaining responsibility for the architecture, implementation decisions, code
+review, and final validation.
+
+### Where AI assisted
+
+- exploring alternative component and responsive-layout approaches;
+- scaffolding repetitive TypeScript and metadata structures;
+- diagnosing build, hydration, and server/client boundary errors;
+- drafting Playwright test scenarios;
+- reviewing accessibility, recruiter-facing wording, and South African English;
+- identifying refactoring opportunities and duplicated implementation.
+
+### My responsibilities
+
+I defined the requirements, selected the final architecture, reviewed generated
+changes, and adjusted implementations to match the project's design system and
+technical constraints. AI-generated suggestions were treated as proposals
+rather than production-ready code.
+
+Every accepted change was validated through:
+
+- manual code and Git-diff review;
+- ESLint and TypeScript checks;
+- production builds;
+- Playwright smoke tests;
+- responsive testing down to a 320-pixel viewport;
+- keyboard and accessibility checks.
+
+### Practical example: mobile navigation
+
+AI assistance helped explore and implement a mobile navigation component with
+larger touch targets, active-page indicators, outside-click handling, and
+keyboard support.
+
+During validation, the production build exposed a Next.js server/client
+boundary problem involving icon components. I corrected the architecture by
+moving the navigation mapping behind an appropriate client boundary, then added
+a Playwright test covering menu opening, Escape-key closure, and focus return.
+
+This workflow allowed me to iterate quickly while maintaining ownership of the
+technical decisions and quality of the final implementation.
 
 ## The solution
 
