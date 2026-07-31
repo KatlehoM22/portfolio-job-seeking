@@ -14,26 +14,19 @@ export const SITE = {
 export const CERTIFICATES = [
   {
     id: "digital-certificate",
-    title: "Digital",
-    issuer: "Yes4Youth",
-    year: "2026",
-    status: "Completed",
-    href: "/certificates/digital_certificate.pdf",
+    title: "Coming Soon",
+    issuer: "",
+    year: "",
+    status: "In Progress",
+    href: "#",
   },
   {
     id: "entrepreneurship-certificate",
-    title: "Entrepreneurship",
-    issuer: "Yes4Youth",
-    year: "2026",
-    status: "Completed",
-    href: "/certificates/entrepreneurship_certificate.pdf",
+    title: "Coming Soon",
+    issuer: "",
+    year: "",
+    status: "In Progress",
+    href: "#",
   },
-  {
-    id: "work-readiness-certificate",
-    title: "Work Readiness",
-    issuer: "Yes4Youth",
-    year: "2026",
-    status: "Completed",
-    href: "/certificates/work_readiness_certificate.pdf",
-  },
+
 ] as const;
