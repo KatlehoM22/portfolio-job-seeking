@@ -7,7 +7,7 @@ export function Header() {
   return (
     <header className="site-header border-b border-border/80 bg-surface/85 backdrop-blur-md">
       <nav
-        className="flex w-full items-center justify-between px-[var(--space-page-x)] py-5"
+        className="flex w-full items-center justify-between gap-3 px-[var(--space-page-x)] py-5"
         aria-label="Main navigation"
       >
         <Link
@@ -17,9 +17,10 @@ export function Header() {
           &lt;KM /&gt;
         </Link>
 
-        <DesktopNavigation />
-
-        <MobileNavigation />
+        <div className="flex items-center gap-2">
+          <DesktopNavigation />
+          <MobileNavigation />
+        </div>
       </nav>
     </header>
   );

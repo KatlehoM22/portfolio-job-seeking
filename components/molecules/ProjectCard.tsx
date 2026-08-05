@@ -29,7 +29,7 @@ export function ProjectCard({
     <article className="tech-panel project-card">
       <div className="project-card-topline">
         <span>{String(index + 1).padStart(2, "0")}</span>
-        <span>case_study()</span>
+        <span>selected_project</span>
       </div>
 
       <Link href={`/projects/${slug}`} aria-label={`View ${title} case study`}>
@@ -55,7 +55,7 @@ export function ProjectCard({
         <h3>
           <Link href={`/projects/${slug}`}>{title}</Link>
         </h3>
-        <p>{summary}</p>
+        <p className="text-sm leading-7 text-muted-foreground">{summary}</p>
       </div>
 
       <ul aria-label={`${title} technology stack`}>
