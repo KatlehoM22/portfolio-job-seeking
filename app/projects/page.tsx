@@ -31,6 +31,10 @@ export default async function ProjectsPage() {
             stack={project.stack}
             screenshot={project.screenshot}
             github={project.github}
+            context={project.context}
+            role={project.role}
+            status={project.status}
+            challenge={project.challenge}
             index={index}
           />
         ))}

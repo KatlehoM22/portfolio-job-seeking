@@ -42,7 +42,7 @@ export default function AboutPage() {
       />
 
       <section className="about-profile-grid">
-        <article className="tech-panel rounded-lg p-6">
+        <article className="card card--soft p-6">
           <h2 className="text-lg font-semibold tracking-tight text-foreground">
             Professional profile
           </h2>
@@ -61,7 +61,7 @@ export default function AboutPage() {
           </p>
         </article>
 
-        <aside className="profile-photo-card tech-panel rounded-lg p-4" aria-label="Professional profile photo">
+        <aside className="profile-photo-card card card--elevated p-4" aria-label="Professional profile photo">
           <div className="profile-photo-frame">
             <Image 
               src="/katleho_profile.jpg" 
@@ -88,7 +88,7 @@ export default function AboutPage() {
           {strengths.map((item) => (
             <article
               key={item.title}
-              className="tech-panel rounded-lg p-5"
+              className="card card--soft p-5"
             >
               <div className="flex items-center gap-2 text-primary">
                 <item.icon className="h-4 w-4" aria-hidden="true" />

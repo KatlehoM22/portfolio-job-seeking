@@ -34,14 +34,35 @@ export function CaseStudyScreenshot({
   priority = false,
 }: CaseStudyScreenshotProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const openButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
 
     const previousOverflow = document.body.style.overflow;
+    const trigger = openButtonRef.current;
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setIsOpen(false);
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
+        'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusable?.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
 
     document.body.style.overflow = "hidden";
@@ -50,6 +71,7 @@ export function CaseStudyScreenshot({
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
+      trigger?.focus();
     };
   }, [isOpen]);
 
@@ -58,6 +80,7 @@ export function CaseStudyScreenshot({
       <div className="case-study-media-frame">
         {src ? (
           <button
+            ref={openButtonRef}
             type="button"
             className="case-study-media-open"
             aria-label={`View full-size ${label} screenshot`}
@@ -101,7 +124,7 @@ export function CaseStudyScreenshot({
                 if (event.target === event.currentTarget) setIsOpen(false);
               }}
             >
-              <div className="case-study-lightbox-dialog">
+              <div className="case-study-lightbox-dialog" ref={dialogRef}>
                 <button
                   type="button"
                   className="case-study-lightbox-close"

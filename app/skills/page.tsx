@@ -117,7 +117,7 @@ export default function SkillsPage() {
         {skillGroups.map((group) => (
           <section
             key={group.area}
-            className="tech-panel rounded-lg p-5"
+            className="card card--soft p-5"
           >
             <h2 className="tech-label text-[0.74rem] font-semibold text-primary">{group.area}</h2>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
@@ -138,9 +138,9 @@ export default function SkillsPage() {
       </div>
 
       <section className="space-y-4">
-        <div>
-          <p className="section-index">CERTIFICATES</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+        <div className="section-title">
+          <p className="section-title__eyebrow">CERTIFICATES</p>
+          <h2 className="section-title__title">
             Credentials and learning milestones
           </h2>
         </div>
@@ -149,7 +149,7 @@ export default function SkillsPage() {
           {CERTIFICATES.map((certificate) => (
             <a
               href={certificate.href}
-              className="tech-panel certificate-card"
+              className="card card--soft certificate-card"
               key={certificate.id}
             >
               <div className="certificate-card-topline">

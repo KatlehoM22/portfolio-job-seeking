@@ -82,7 +82,7 @@ export default function CvPage() {
         description="A focused overview of my software development experience, education, and technical strengths."
       />
 
-      <section className="tech-panel rounded-lg p-6 sm:p-7">
+      <section className="card card--soft p-6 sm:p-7">
         <p className="section-index">PROFESSIONAL PROFILE</p>
         <p className="mt-4 max-w-4xl text-sm leading-7 text-muted-foreground sm:text-base">
           Junior software developer with a Diploma in Computer Science and
@@ -106,7 +106,7 @@ export default function CvPage() {
           {experience.map((position) => (
             <article
               key={`${position.company}-${position.period}`}
-              className="tech-panel rounded-lg p-6"
+              className="card card--soft p-6"
             >
               <p className="tech-label text-[0.68rem] text-primary">
                 {position.period}
@@ -125,7 +125,7 @@ export default function CvPage() {
       </section>
 
       <section className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
-        <article className="tech-panel rounded-lg p-6">
+        <article className="card card--soft p-6">
           <div className="flex items-center gap-2 text-primary">
             <FaGraduationCap className="h-4 w-4" aria-hidden="true" />
             <h2 className="tech-label text-sm font-semibold">Education</h2>
@@ -145,7 +145,7 @@ export default function CvPage() {
           </p>
         </article>
 
-        <article className="tech-panel rounded-lg p-6">
+        <article className="card card--soft p-6">
           <div className="flex items-center gap-2 text-primary">
             <FaLaptopCode className="h-4 w-4" aria-hidden="true" />
             <h2 className="tech-label text-sm font-semibold">

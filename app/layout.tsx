@@ -30,9 +30,9 @@ export const metadata: Metadata = {
 const themeScript = `
   try {
     const savedTheme = localStorage.getItem("portfolio-theme");
-    document.documentElement.dataset.theme = savedTheme === "light" ? "light" : "dark";
+    document.documentElement.dataset.theme = savedTheme === "dark" ? "dark" : "light";
   } catch {
-    document.documentElement.dataset.theme = "dark";
+    document.documentElement.dataset.theme = "light";
   }
 `;
 
@@ -42,11 +42,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-ZA" data-scroll-behavior="smooth" data-theme="dark" suppressHydrationWarning>
+    <html lang="en-ZA" data-scroll-behavior="smooth" data-theme="light" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="bg-background text-foreground antialiased">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <Header />
         <PageContainer>{children}</PageContainer>
         <Footer />

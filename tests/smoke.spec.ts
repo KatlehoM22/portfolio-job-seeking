@@ -5,7 +5,7 @@ const pages = [
     name: "home",
     path: "/",
     title: "Katleho Makoro | Junior Software Developer",
-    heading: "I'm Katleho Makoro",
+    heading: "Junior full-stack developer building software for real business workflows",
   },
   {
     name: "about",

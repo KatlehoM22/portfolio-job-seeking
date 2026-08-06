@@ -7,7 +7,7 @@ import {
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children }) => (
-      <h1 className="text-2xl font-bold tracking-tight text-foreground">{children}</h1>
+      <h2 className="text-2xl font-bold tracking-tight text-foreground">{children}</h2>
     ),
     h2: ({ children }) => (
       <h2 className="tech-label text-[0.78rem] font-bold text-primary">{children}</h2>

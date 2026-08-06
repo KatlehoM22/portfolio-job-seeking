@@ -22,7 +22,7 @@ function subscribeToTheme(callback: () => void) {
 }
 
 export function ThemeToggle() {
-  const theme = useSyncExternalStore(subscribeToTheme, getTheme, () => "dark");
+  const theme = useSyncExternalStore(subscribeToTheme, getTheme, () => "light");
   const nextTheme: Theme = theme === "dark" ? "light" : "dark";
 
   function toggleTheme() {
@@ -37,10 +37,9 @@ export function ThemeToggle() {
       className="hero-tagline"
       onClick={toggleTheme}
       aria-label={`Switch to ${nextTheme} mode`}
-      aria-pressed={theme === "light"}
       title={`Switch to ${nextTheme} mode`}
     >
-      {theme === "dark" ? "Dark-mode is Dev-mode" : "Light-mode Attracts Bugs"}
+      {theme === "dark" ? "Light mode" : "Dark mode"}
     </button>
   );
 }

@@ -1,16 +1,38 @@
 import Link from "next/link";
-import { FaDatabase, FaEnvelope, FaGithub, FaLinkedin, FaServer } from "react-icons/fa";
-import { SiReact } from "react-icons/si";
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+import { ProfessionalFacts } from "@/components/molecules/ProfessionalFacts";
 import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { ThemeToggle } from "@/components/atoms/ThemeToggle";
 import { SITE } from "@/lib/constants";
-import { ROUTES } from "@/lib/routes";
 import { getProjectSummaries } from "@/lib/projects";
+import { ROUTES } from "@/lib/routes";
+
+const facts = [
+  { label: "Current role", value: "Software Developer Intern at iHub Africa" },
+  { label: "Experience", value: "Two software development internships" },
+  { label: "Qualification", value: "Diploma in Computer Science" },
+  { label: "Location", value: "Johannesburg, South Africa" },
+];
 
 const capabilities = [
-  { index: "01", title: "Frontend delivery", icon: SiReact, text: "Responsive, accessible interfaces built with React and a focus on maintainable product experiences." },
-  { index: "02", title: "Backend foundations", icon: FaServer, text: "REST APIs, validation, authentication fundamentals, and structured service logic." },
-  { index: "03", title: "Data & workflow support", icon: FaDatabase, text: "Relational data modelling, SQL, testing, and dependable delivery for real operational use." },
+  { title: "Frontend", text: "React, JavaScript, responsive interfaces, and role-based dashboards." },
+  { title: "Backend and APIs", text: "Node.js, Express, REST APIs, validation, and system integrations." },
+  { title: "Data and enterprise", text: "PostgreSQL, SQL, OData, SAPUI5/Fiori, and ABAP." },
+];
+
+const experience = [
+  {
+    role: "Software Developer Intern",
+    company: "iHub Africa",
+    period: "October 2025–present",
+    detail: "Build internal React and Node.js applications, REST APIs, reporting features, and PostgreSQL-backed workflows.",
+  },
+  {
+    role: "Software Developer Intern",
+    company: "ByteCode Consulting",
+    period: "September 2024–August 2025",
+    detail: "Contributed to full-stack tracking software and worked with SAPUI5/Fiori, OData, ABAP, and enterprise workflows.",
+  },
 ];
 
 export default async function Home() {
@@ -18,108 +40,90 @@ export default async function Home() {
 
   return (
     <main>
-      <section className="hero-shell">
-        <div className="hero-orbit hero-orbit-one" />
-        <div className="hero-orbit hero-orbit-two" />
+      <section className="hero-shell" aria-labelledby="home-title">
         <div className="hero-content rise-in">
-          <ThemeToggle />
-          <p className="hero-kicker"><span>{"//"}</span> OPEN TO JUNIOR ROLES</p>
-          <h1 className="hero-title">
-            Junior software developer building reliable web applications
+          <div className="hero-utility-row">
+            <p className="availability"><span aria-hidden="true" />Available for junior software development roles</p>
+            <ThemeToggle />
+          </div>
+          <h1 id="home-title" className="hero-title">
+            Junior full-stack developer building software for real business workflows
           </h1>
-          <p className="hero-role"><span>&gt;</span> Full-stack thinking, practical delivery, and clear technical communication<span className="cursor">_</span></p>
           <p className="hero-summary">
-            I build web experiences with strong frontend fundamentals, backend logic, and database-driven workflows that support real teams.
+            I build internal applications with React, Node.js, Express, and PostgreSQL—from role-based interfaces and REST APIs to validation, reporting, and database-backed workflows.
           </p>
+          <p className="hero-proof">Software Developer Intern at iHub Africa · 2 development internships · Diploma in Computer Science</p>
           <div className="hero-actions">
-            <Link href={ROUTES.cv} className="button button-primary">view_cv()</Link>
-            <Link href={ROUTES.contact} className="button button-secondary">contact_me()</Link>
+            <Link href={ROUTES.projects} className="button button-primary">View professional projects</Link>
+            <Link href={ROUTES.cv} className="button button-secondary">View CV</Link>
+            <Link href={ROUTES.contact} className="button button-ghost">Contact me</Link>
           </div>
-          <div className="mt-4 flex flex-wrap gap-2 text-sm text-muted-foreground">
-            <span className="rounded-full border border-border/80 bg-surface/70 px-3 py-1">Full-stack web apps</span>
-            <span className="rounded-full border border-border/80 bg-surface/70 px-3 py-1">REST APIs & databases</span>
-            <span className="rounded-full border border-border/80 bg-surface/70 px-3 py-1">Junior role ready</span>
-          </div>
-          <div className="social-links hero-social-links" aria-label="Social links">
-            <a href={SITE.socials.github} target="_blank" rel="noreferrer">
-              <FaGithub className="h-4 w-4" aria-hidden="true" />
-              <span>GitHub</span>
-            </a>
-            <a href={SITE.socials.linkedin} target="_blank" rel="noreferrer">
-              <FaLinkedin className="h-4 w-4" aria-hidden="true" />
-              <span>LinkedIn</span>
-            </a>
-            <a href={SITE.socials.email}>
-              <FaEnvelope className="h-4 w-4" aria-hidden="true" />
-              <span>Email</span>
-            </a>
+          <div className="social-links hero-social-links" aria-label="Professional profiles">
+            <a href={SITE.socials.linkedin} target="_blank" rel="noreferrer"><FaLinkedin aria-hidden="true" /><span>LinkedIn</span><span className="sr-only"> (opens in a new tab)</span></a>
+            <a href={SITE.socials.github} target="_blank" rel="noreferrer"><FaGithub aria-hidden="true" /><span>GitHub</span><span className="sr-only"> (opens in a new tab)</span></a>
+            <a href={SITE.socials.email}><FaEnvelope aria-hidden="true" /><span>Email</span></a>
           </div>
         </div>
       </section>
 
-      <section className="home-section">
+      <section className="home-section home-proof" aria-labelledby="proof-title">
+        <div className="section-heading compact-heading">
+          <div><p className="section-kicker">Professional proof</p><h2 id="proof-title">Employment snapshot</h2></div>
+        </div>
+        <ProfessionalFacts facts={facts} />
+      </section>
+
+      <section className="home-section" aria-labelledby="projects-title">
         <div className="section-heading">
-          <div><p className="section-index">02 / STRENGTHS</p><h2>What I bring to a team</h2></div>
-          <Link href={ROUTES.cv} className="text-link">View experience <span>↗</span></Link>
+          <div><p className="section-kicker">Selected evidence</p><h2 id="projects-title">Professional work and technical case studies</h2></div>
+          <Link href={ROUTES.projects} className="text-link">View all projects <span aria-hidden="true">↗</span></Link>
+        </div>
+        <div className="project-card-grid home-project-card-grid">
+          {projects.map((project) => (
+            <ProjectCard key={project.slug} {...project} />
+          ))}
+        </div>
+      </section>
+
+      <section className="home-section" aria-labelledby="capabilities-title">
+        <div className="section-heading">
+          <div><p className="section-kicker">Applied skills</p><h2 id="capabilities-title">Technical capabilities</h2></div>
+          <Link href={ROUTES.skills} className="text-link">View all technical skills <span aria-hidden="true">↗</span></Link>
         </div>
         <div className="capability-grid">
           {capabilities.map((item) => (
-            <article className="tech-panel capability-card" key={item.index}>
-              <div className="capability-card-topline">
-                <span>{item.index}</span>
-                <item.icon className="h-5 w-5 text-primary" aria-hidden="true" />
-              </div>
+            <article className="card card--soft capability-card" key={item.title}>
               <h3>{item.title}</h3><p>{item.text}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="home-section">
+      <section className="home-section" aria-labelledby="experience-title">
         <div className="section-heading">
-          <div><p className="section-index">03 / EXPERIENCE</p><h2>Recent professional experience</h2></div>
-          <Link href={ROUTES.cv} className="text-link">View full CV <span>↗</span></Link>
+          <div><p className="section-kicker">Employment</p><h2 id="experience-title">Work experience</h2></div>
         </div>
-        <div className="tech-panel rounded-lg p-6 sm:p-7">
-          <p className="tech-label text-[0.72rem] font-semibold text-primary">Software Developer Intern · iHub Africa · 2025 – Present</p>
-          <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-            Working on full-stack applications, REST APIs, database-backed workflows, and role-based dashboards for internal business use.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <span className="rounded-full border border-border/80 bg-surface/70 px-3 py-1 text-sm text-muted-foreground">React</span>
-            <span className="rounded-full border border-border/80 bg-surface/70 px-3 py-1 text-sm text-muted-foreground">Node.js</span>
-            <span className="rounded-full border border-border/80 bg-surface/70 px-3 py-1 text-sm text-muted-foreground">PostgreSQL</span>
-            <span className="rounded-full border border-border/80 bg-surface/70 px-3 py-1 text-sm text-muted-foreground">API integration</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="home-section">
-        <div className="section-heading">
-          <div><p className="section-index">04 / PROJECTS</p><h2>Selected projects</h2></div>
-          <Link href={ROUTES.projects} className="text-link">View all projects <span>↗</span></Link>
-        </div>
-        <div className="project-card-grid home-project-card-grid">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.slug}
-              slug={project.slug}
-              title={project.title}
-              summary={project.summary}
-              stack={project.stack}
-              screenshot={project.screenshot}
-              github={project.github}
-              index={index}
-            />
+        <div className="experience-list">
+          {experience.map((item) => (
+            <article className="experience-entry" key={`${item.company}-${item.period}`}>
+              <p className="experience-period">{item.period}</p>
+              <div><h3>{item.role}</h3><p className="experience-company">{item.company}</p><p>{item.detail}</p></div>
+            </article>
           ))}
         </div>
+        <div className="section-actions">
+          <Link href={ROUTES.cv} className="button button-primary">View CV</Link>
+        </div>
       </section>
 
-      <section className="home-section contact-cta">
-        <p className="section-index">05 / CONTACT</p>
-        <h2>Interested in speaking further?</h2>
-        <p>I&apos;m open to junior software development roles, internships, and thoughtful collaborations.</p>
-        <Link href={ROUTES.contact} className="button button-primary">start_a_conversation()</Link>
+      <section className="home-section contact-cta" aria-labelledby="contact-title">
+        <p className="section-kicker">Contact</p>
+        <h2 id="contact-title">Open to junior software development roles</h2>
+        <p>I’m interested in full-stack web, API, database, and enterprise application opportunities in Johannesburg or remote teams.</p>
+        <div className="contact-actions">
+          <Link href={ROUTES.contact} className="button button-primary">Contact me</Link>
+          <a href={SITE.socials.email} className="button button-secondary">Email Katleho</a>
+        </div>
       </section>
     </main>
   );

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { NAV_LINKS } from "@/lib/navigation";
+import { ROUTES } from "@/lib/routes";
 
 function isActivePath(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -15,6 +16,7 @@ export function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -41,8 +43,15 @@ export function MobileNavigation() {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    if (isOpen) firstLinkRef.current?.focus();
+  }, [isOpen]);
+
   return (
-    <div className="site-mobile-nav" ref={containerRef}>
+    <div className="site-mobile-actions" ref={containerRef}>
+      <Link href={ROUTES.cv} className="mobile-cv-action">
+        CV
+      </Link>
       <button
         ref={buttonRef}
         type="button"
@@ -71,6 +80,7 @@ export function MobileNavigation() {
             return (
               <Link
                 key={link.href}
+                ref={link.href === NAV_LINKS[0].href ? firstLinkRef : undefined}
                 href={link.href}
                 className={`mobile-nav-link${isActive ? " mobile-nav-link-active" : ""}`}
                 aria-current={isActive ? "page" : undefined}

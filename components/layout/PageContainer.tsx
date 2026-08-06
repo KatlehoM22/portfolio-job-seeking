@@ -2,7 +2,11 @@ import type { ReactNode } from "react";
 
 export function PageContainer({ children }: { children: ReactNode }) {
   return (
-    <div className="page-container w-full px-[var(--space-page-x)] py-[var(--space-page-y)]">
+    <div
+      id="main-content"
+      tabIndex={-1}
+      className="page-container container w-full py-[var(--space-page-y)]"
+    >
       {children}
     </div>
   );

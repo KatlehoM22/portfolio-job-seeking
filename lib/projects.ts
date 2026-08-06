@@ -21,6 +21,10 @@ type ProjectMeta = {
   screenshot?: string;
   screenshots: ProjectScreenshot[];
   github: ProjectGitHub;
+  context: string;
+  role: string;
+  status: string;
+  challenge: string;
 };
 
 type ImportedProjectMetadata = Partial<
@@ -31,6 +35,10 @@ type ImportedProjectMetadata = Partial<
     status?: string;
     url?: string;
   };
+  context?: string;
+  role?: string;
+  status?: string;
+  challenge?: string;
 };
 
 type ImportedProjectModule = {
@@ -98,6 +106,10 @@ function normalizeProjectMeta(
     screenshot: screenshots[0]?.src ?? metadata?.screenshot,
     screenshots,
     github,
+    context: metadata?.context ?? "Technical project",
+    role: metadata?.role ?? "Software developer",
+    status: metadata?.status ?? "Completed",
+    challenge: metadata?.challenge ?? "Designing a maintainable solution around the project requirements.",
   };
 }
 

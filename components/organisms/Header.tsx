@@ -13,6 +13,7 @@ export function Header() {
         <Link
           href={ROUTES.home}
           className="brand-mark tech-label text-sm font-bold text-primary"
+          aria-label="Katleho Makoro — Home"
         >
           &lt;KM /&gt;
         </Link>

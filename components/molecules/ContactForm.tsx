@@ -14,6 +14,9 @@ const FORMSPREE_FORM_ID = "mnjerpwn";
 
 export function ContactForm() {
   const [state, handleSubmit, reset] = useForm<ContactFields>(FORMSPREE_FORM_ID);
+  const nameErrorId = "contact-name-error";
+  const emailErrorId = "contact-email-error";
+  const messageErrorId = "contact-message-error";
 
   if (state.succeeded) {
     return (
@@ -43,7 +46,7 @@ export function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className="contact-form" onSubmit={handleSubmit} aria-busy={state.submitting}>
       <input
         type="hidden"
         name="_subject"
@@ -58,58 +61,67 @@ export function ContactForm() {
         aria-hidden="true"
       />
 
-      <label htmlFor="contact-name">
-        <span>Name</span>
+      <label htmlFor="contact-name" className="form-field">
+        <span className="form-label">Name</span>
         <input
+          className="form-input"
           id="contact-name"
           type="text"
           name="name"
           placeholder="Your name"
           autoComplete="name"
           aria-invalid={state.errors?.getFieldErrors("name").length ? true : undefined}
+          aria-describedby={state.errors?.getFieldErrors("name").length ? nameErrorId : undefined}
           required
         />
         <ValidationError
           prefix="Name"
           field="name"
           errors={state.errors}
+          id={nameErrorId}
           className="contact-field-error"
         />
       </label>
 
-      <label htmlFor="contact-email">
-        <span>Email</span>
+      <label htmlFor="contact-email" className="form-field">
+        <span className="form-label">Email</span>
         <input
+          className="form-input"
           id="contact-email"
           type="email"
           name="email"
           placeholder="you@example.com"
           autoComplete="email"
           aria-invalid={state.errors?.getFieldErrors("email").length ? true : undefined}
+          aria-describedby={state.errors?.getFieldErrors("email").length ? emailErrorId : undefined}
           required
         />
         <ValidationError
           prefix="Email"
           field="email"
           errors={state.errors}
+          id={emailErrorId}
           className="contact-field-error"
         />
       </label>
 
-      <label htmlFor="contact-message">
-        <span>Message</span>
+      <label htmlFor="contact-message" className="form-field">
+        <span className="form-label">Message</span>
         <textarea
+          className="form-textarea"
           id="contact-message"
           name="message"
           placeholder="Tell me about the opportunity..."
           rows={5}
           aria-invalid={state.errors?.getFieldErrors("message").length ? true : undefined}
+          aria-describedby={state.errors?.getFieldErrors("message").length ? messageErrorId : undefined}
           required
         />
         <ValidationError
           prefix="Message"
           field="message"
           errors={state.errors}
+          id={messageErrorId}
           className="contact-field-error"
         />
       </label>
